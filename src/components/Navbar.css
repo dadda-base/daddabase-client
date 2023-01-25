@@ -1,0 +1,27 @@
+.Navbar{
+    background-color: #000;
+    color: #FFF5EE;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+}
+
+.Navbar-brand{
+    display: flex;
+}
+
+.NavLink{
+    color: #FFF5EE;
+    font-size: 1.5vw;
+    padding: 0 1vw;
+    text-decoration: none;
+}
+
+.Navlink:hover{
+    opacity: 0.7;
+}
+
+.Navbar-logo{
+    width: 5vw;
+}
