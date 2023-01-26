@@ -13,9 +13,10 @@ import LogInPage from "./pages/LogInPage";
 import LogOutPage from "./pages/LogOutPage";
 import ErrorPage from "./pages/ErrorPage";
 import ProfilePage from "./pages/ProfilePage";
-import ResourcesPage from "./pages/ResourcesPage";
+import ResourceListPage from "./pages/ResourceListPage";
 import PostsPage from "./pages/PostsPage";
 import Footer from "./components/Footer";
+import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 /////////////////////////////////
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
         <Route path={"/logIn"} element={<LogInPage />} />
         <Route path={"/logout"} element={<LogOutPage />} />
         <Route path={"/profiles/:userId"} element={<ProfilePage />} />
-        <Route path={"/resources"} element={<ResourcesPage />} />
+        <Route path={"/resources"} element={<ResourceListPage />} />
+        <Route path={"/resources/:resourceId"} element={<ResourceDetailsPage />} />
         <Route path={"/posts"} element={<PostsPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

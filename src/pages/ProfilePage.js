@@ -1,6 +1,7 @@
 import "../pages/ProfilePage.css";
 import { useContext } from "react";                     // <== IMPORT 
 import { AuthContext } from "../context/auth.context";
+import { Link } from "react-router-dom";
 
 function ProfilePage() {
 
