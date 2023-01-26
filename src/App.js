@@ -1,7 +1,5 @@
 import "./App.css";
-import image from "./data/daddabase-hompage.png"
 import { Routes, Route /*useNavigate*/ } from "react-router-dom";
-//import { axios, useState, useEffect } from 'react';
 
 ///////Our Components///////////
 ///Components/////
@@ -16,9 +14,11 @@ import ProfilePage from "./pages/ProfilePage";
 import ResourcesPage from "./pages/ResourcesPage";
 import PostsPage from "./pages/PostsPage";
 import Footer from "./components/Footer";
+import ProfileEditPage from "./pages/ProfileEditPage"
 /////////////////////////////////
 
 function App() {
+
   return (
     <div className="App">
       <Navbar />
@@ -27,7 +27,8 @@ function App() {
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/logIn"} element={<LogInPage />} />
         <Route path={"/logout"} element={<LogOutPage />} />
-        <Route path={"/profiles/:userId"} element={<ProfilePage />} />
+        <Route path={`/profiles/:userId`} element={<ProfilePage />} />
+        <Route path={"/profiles/:userId/edit"} element={<ProfileEditPage />} />
         <Route path={"/resources"} element={<ResourcesPage />} />
         <Route path={"/posts"} element={<PostsPage />} />
         <Route path="*" element={<ErrorPage />} />

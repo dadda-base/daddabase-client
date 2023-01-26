@@ -23,7 +23,7 @@ function Navbar() {
       {isLoggedIn &&
         <div>
           <NavLink className="NavLink" to="/">Home</NavLink>
-          <NavLink className="NavLink" to="/profiles/:userId">Profile</NavLink>
+          <NavLink className="NavLink" to={`/profiles/${user._id}`}>Profile</NavLink>
           <NavLink className="NavLink" to="/resources">Resources</NavLink>
           <NavLink className="NavLink" to="/posts">Posts</NavLink>
           <button className="logout-button" onClick={logOutUser}>Log Out</button>
