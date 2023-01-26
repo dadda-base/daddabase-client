@@ -14,7 +14,7 @@ function ResourceDetailsPage() {
     
   const getResource = () => {        
     axios
-      .get(baseURL + "/api/resources/" + resourceId)
+      .get()
       .then((response) => {
         const resource = response.data;
         setResource(resource);
