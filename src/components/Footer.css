@@ -4,11 +4,9 @@
     position: fixed;
     bottom: 0;
     width: 100vw;
-}
-
-.developed-by{
-    font-size: 1.5vw;
-    padding: 0 2vw;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
 }
 
 .boy{
@@ -17,4 +15,12 @@
  
  .girl{
      background-color:rgb(230, 70, 224)
+ }
+
+ .Footer .contact{
+    font-size: 1.5vw;
+ }
+ 
+ .Footer .socials{
+    margin: 0.2vw;
  }

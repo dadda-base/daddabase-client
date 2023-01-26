@@ -1,9 +1,9 @@
 import "../pages/HomePage.css";
-
+import image from "../data/daddabase-hompage.png"
 function HomePage() {
   return(
   <div className="HomePage">
-    <h1>Welcome To DaddaBase</h1>
+      <img src={image} alt="" />
     </div>
   )
 }

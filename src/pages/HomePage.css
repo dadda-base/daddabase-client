@@ -2,3 +2,8 @@
     background-color: rgb(235, 152, 152);
     height: 100%;
 }
+
+.HomePage img{
+    position: fixed;
+    width: 100vw;
+}
