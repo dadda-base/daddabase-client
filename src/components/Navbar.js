@@ -14,26 +14,33 @@ function Navbar() {
   return (
     <div className={`Navbar ${value}`}>
       <div className="Navbar-brand">
-          <img className={"Navbar-logo"} src={logo} alt="not working" />
-      <div>   
-        <h1 className="Navbar-brandname">DaddaBase</h1>
-        <span> we've got your back!</span>
-      </div>
-    </div>
-      {isLoggedIn &&
+        <img className={"Navbar-logo"} src={logo} alt="not working" /> 
         <div>
+          <h1 className="Navbar-brandname">DaddaBase</h1>
+          <span> we've got your back!</span>
+        </div>
+      </div>
+      
+
+
+      {isLoggedIn &&
+        <div className="navlinks">
           <NavLink className="NavLink" to="/">Home</NavLink>
-          <NavLink className="NavLink" to="/profiles/:userId">Profile</NavLink>
+          <NavLink className="NavLink" to={`/profiles/${user._id}`}>Profile</NavLink>
           <NavLink className="NavLink" to="/resources">Resources</NavLink>
           <NavLink className="NavLink" to="/posts">Posts</NavLink>
           <button className="logout-button" onClick={logOutUser}>Log Out</button>
-          <h1>{user && user.name}</h1>
+          <h5>{user && user.name}</h5>
         </div>}
+      
+
       {!isLoggedIn &&
-        <div>
+        <div className="navlinks">
           <NavLink className="NavLink" to="/login">Log In</NavLink>
           <NavLink className="NavLink" to="/signUp">Sign Up</NavLink>
         </div>}
+      
+
     </div>
   );
 }

@@ -4,9 +4,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right:2vw;
     position: fixed;
-    width: 100%;
+    padding: 0 3vw;
+    width: 95%;
     z-index: 1;
 }
 
@@ -16,8 +16,8 @@
 
 .NavLink{
     color: #FFF5EE;
-    font-size: 1.5vw;
-    padding: 0 1vw;
+    font-size: 1vw;
+    padding: 0.2vw;
     text-decoration: none;
 }
 
@@ -26,7 +26,6 @@
 }
 
 .Navbar-logo{
-    margin-left: 2vw;
     width: 5vw;
 }
 
@@ -47,3 +46,9 @@
     position: relative;
     left: 4.5vw;
 }
+
+.Navbar .navlinks {
+    margin-right: 2vw;
+}
+
+
