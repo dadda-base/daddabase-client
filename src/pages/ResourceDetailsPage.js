@@ -1,7 +1,7 @@
 import "../pages/ResourceDetailsPage.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 
 const baseURL = process.env.REACT_APP_API_URL;
@@ -10,6 +10,7 @@ function ResourceDetailsPage() {
   const [resource, setResource] = useState(null);
 
   const {resourceId} = useParams();
+  const navigate = useNavigate(); 
     
   const getResource = () => {        
     axios
@@ -20,6 +21,15 @@ function ResourceDetailsPage() {
       })
       .catch((error) => console.log(error));
   };
+
+  const deleteResource = () => {
+    axios
+      .delete(baseURL + "/api/resources/" + resourceId)
+      .then(() => {
+        navigate("/resources");
+      })
+      .catch((err) => console.log(err));
+  };  
 
   useEffect(() => {
     getResource()
@@ -50,6 +60,9 @@ function ResourceDetailsPage() {
       <Link to={`/resources/edit/${resourceId}`}>
         <button>Edit Resource</button>
       </Link> 
+
+      <button onClick={deleteResource}>Delete</button>
+
     </div>
   );
 }
