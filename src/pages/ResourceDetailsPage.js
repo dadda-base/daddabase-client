@@ -14,7 +14,7 @@ function ResourceDetailsPage() {
     
   const getResource = () => {        
     axios
-      .get()
+      .get(baseURL + "/api/resources/" + resourceId)
       .then((response) => {
         const resource = response.data;
         setResource(resource);
@@ -41,7 +41,6 @@ function ResourceDetailsPage() {
         <>
           <h1>{resource.title}</h1>
           <p style={{ maxWidth: "400px" }}>{resource.description} </p>
-      <img src={resource.imageUrl} alt="" />
       {/* if statement and show article, img or video */}
       { resource.imageUrl?  
         <img src={resource.imageUrl} alt="" /> : <></>

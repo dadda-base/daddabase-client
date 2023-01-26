@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import "./EditResourcePage.css"
 
 const baseURL = process.env.REACT_APP_API_URL;
 
