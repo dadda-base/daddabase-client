@@ -19,7 +19,7 @@ function ProfileEditPage() {
 
     axios
       .put(`${baseURL}/api/users/${user._id}`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+        headers: { Authorization: `Bearer ${storedToken}` }
       })
       .then((response) => {
         navigate(`/profiles/${user._id}`);

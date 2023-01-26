@@ -1,7 +1,7 @@
 import "../pages/PostsPage.css";
 import axios from 'axios';
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 
 function PostsPage() {
   const [posts, setPosts] = useState([]);
@@ -29,11 +29,12 @@ function PostsPage() {
 
   return (
     <div className="PostsPage">
-      {posts.map((post) => {
+      <Link to="/createpost">Create Post</Link>
+        {posts.map((post) => {
         return (
           <>
-            <h1>{post.title}</h1>
-            <span>{post.user}</span>
+            <h1>Post Title:{post.title}</h1>
+            <h4>Post description:{post.description}</h4>
           </>
         );
       })}

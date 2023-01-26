@@ -15,6 +15,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 import PostsPage from "./pages/PostsPage";
 import Footer from "./components/Footer";
 import ProfileEditPage from "./pages/ProfileEditPage"
+import CreatePostPage from "./pages/CreatePostPage";
 /////////////////////////////////
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path={"/profiles/:userId/edit"} element={<ProfileEditPage />} />
         <Route path={"/resources"} element={<ResourcesPage />} />
         <Route path={"/posts"} element={<PostsPage />} />
+        <Route path={"/createpost"} element={<CreatePostPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
