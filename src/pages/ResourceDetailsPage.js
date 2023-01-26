@@ -37,7 +37,7 @@ function ResourceDetailsPage() {
         <img src={resource.imageUrl} alt="" /> : <></>
       }
       { resource.videoUrl? 
-        <ReactPlayer url={resource.videoUrl} playing={false} controls={true} />
+        <ReactPlayer url={resource.videoUrl} width="50vw" height="40vh" playing={false} controls={true} />
         : <></>
       }
         </>
