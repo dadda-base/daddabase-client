@@ -39,7 +39,7 @@ function LogInPage() {
   return (
     <div className="LogInPage">
       <h1>Login</h1>
-      <form onSubmit={handleLoginSubmit}>
+      <form className="form" onSubmit={handleLoginSubmit}>
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
 

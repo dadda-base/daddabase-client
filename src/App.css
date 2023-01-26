@@ -3,5 +3,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 48vw ;
+  height: 100vw;
+}
+
+.landing-page-image{
+  height: 45%;
+  position: relative;
+  top: 2vw;
 }

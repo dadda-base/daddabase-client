@@ -43,7 +43,7 @@ function SignUpPage(props) {
     <div className="SignUpPage">
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
+      <form className="form" onSubmit={handleSignupSubmit}>
         <label>Email:</label>
         <input 
           type="email"

@@ -1,19 +1,25 @@
 import "../components/Navbar.css";
 import { NavLink } from "react-router-dom";
 import logo from "../data/daddabase-logo.png"
-import { useContext } from "react";                     // <== IMPORT 
 import { AuthContext } from "../context/auth.context";
+import { useContext } from 'react';
+import { ThemeContext } from './../context/theme.context';
+ 
 
 function Navbar() {
 
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const value = useContext(ThemeContext);
 
   return (
-    <div className="Navbar">
+    <div className={`Navbar ${value}`}>
       <div className="Navbar-brand">
-        <img className={"Navbar-logo"} src={logo} alt="not working" />
-        <h1>DaddaBase</h1>
+          <img className={"Navbar-logo"} src={logo} alt="not working" />
+      <div>   
+        <h1 className="Navbar-brandname">DaddaBase</h1>
+        <span> we've got your back!</span>
       </div>
+    </div>
       {isLoggedIn &&
         <div>
           <NavLink className="NavLink" to="/">Home</NavLink>
@@ -21,7 +27,7 @@ function Navbar() {
           <NavLink className="NavLink" to="/resources">Resources</NavLink>
           <NavLink className="NavLink" to="/posts">Posts</NavLink>
           <button className="logout-button" onClick={logOutUser}>Log Out</button>
-          <span>{user && user.name}</span>
+          <h1>{user && user.name}</h1>
         </div>}
       {!isLoggedIn &&
         <div>

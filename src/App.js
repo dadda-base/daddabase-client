@@ -1,5 +1,5 @@
 import "./App.css";
-
+import image from "./data/daddabase-hompage.png"
 import { Routes, Route /*useNavigate*/ } from "react-router-dom";
 //import { axios, useState, useEffect } from 'react';
 
