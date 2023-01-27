@@ -20,8 +20,8 @@ function ProfilePage() {
       })
       .then((response) => {
         const oneProfile = response.data;
-        setProfileImage(oneProfile.username);
-        setUsername(oneProfile.profileImage);
+        setProfileImage(oneProfile.profileImage);
+        setUsername(oneProfile.username);
       })
       .catch((error) => console.log(error));
   };
@@ -48,11 +48,8 @@ function ProfilePage() {
     <div className="ProfilePage">
       {isLoggedIn && (
         <>
-          <h1>{user.name}</h1>
-          <h1>{user.email}</h1>
-          <h1>{user._id}</h1>
-          <h1>UserName:{username}</h1>
-          <h1>profile Image:{profileImage}</h1>
+          <img className="profile-image" src={profileImage} alt="" />
+          <h1>{username}</h1>
 
           <Link to={`/profiles/${user._id}/edit`}> Edit Profile</Link>
           <button onClick={deleteUser}> Delete Profile</button>
