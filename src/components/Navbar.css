@@ -1,5 +1,5 @@
 .Navbar{
-    background-color: #000;
+    background-color: rgb(5, 5, 5);
     color: #FFF5EE;
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .NavLink{
-    color: #0e0e0e;
+    color: #f1e7e7;
     font-size: 1vw;
     padding: 0.2vw;
     text-decoration: none;
