@@ -8,7 +8,6 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LogInPage from "./pages/LogInPage";
-import LogOutPage from "./pages/LogOutPage";
 import ErrorPage from "./pages/ErrorPage";
 import ProfilePage from "./pages/ProfilePage";
 import ResourceListPage from "./pages/ResourceListPage";
@@ -29,7 +28,7 @@ function App() {
         <Route path={"/"} element={<HomePage />} />
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/logIn"} element={<LogInPage />} />
-        <Route path={"/logout"} element={<LogOutPage />} />
+
         <Route path={`/profiles/:userId`} element={<ProfilePage />} />
         <Route path={"/profiles/:userId/edit"} element={<ProfileEditPage />} />
         <Route path={"/resources"} element={<ResourceListPage />} />
