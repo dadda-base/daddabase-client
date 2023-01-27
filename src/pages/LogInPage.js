@@ -12,7 +12,7 @@ function LogInPage() {
 
   const navigate = useNavigate();
 
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, storeUser, authenticateUser } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -28,6 +28,7 @@ function LogInPage() {
         console.log('JWT token', response.data.authToken );
       
         storeToken(response.data.authToken);
+        storeUser(response.data.user)
         authenticateUser();
         navigate('/');                               
       })

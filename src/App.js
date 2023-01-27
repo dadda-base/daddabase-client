@@ -17,9 +17,23 @@ import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import ProfileEditPage from "./pages/ProfileEditPage"
 import CreatePostPage from "./pages/CreatePostPage";
 import EditResourcePage from "./pages/EditResourcePage";
+import { useEffect, useState } from "react";
+import axios from "axios";
 /////////////////////////////////
+const baseURL = process.env.REACT_APP_API_URL;
 
 function App() {
+  const [user, setUser] = useState([])
+
+  useEffect(()=>{
+    axios.get(`${baseURL}/api/users/${user._id}`)
+      .then((res) => {
+        setUser(res.data)
+      })
+      .catch((error) => console.log(error))
+  }, [<LogInPage />])
+
+  console.log("user is...", user);
 
   return (
     <div className="App">
