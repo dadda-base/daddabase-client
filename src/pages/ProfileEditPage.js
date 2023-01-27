@@ -23,6 +23,7 @@ function ProfileEditPage() {
       })
       .then((response) => {
         navigate(`/profiles/${user._id}`);
+        console.log(`new ${username}, ${profileImage} user: ${user._id}`)
       })
       .catch((error) => console.log(error));
   };

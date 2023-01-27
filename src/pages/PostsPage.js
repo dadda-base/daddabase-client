@@ -29,15 +29,17 @@ function PostsPage() {
 
   return (
     <div className="PostsPage">
-      <Link to="/createpost">Create Post</Link>
+      <Link className="Link" to="/createpost">Create Post</Link>
+      <div className="all-posts">
         {posts.map((post) => {
         return (
-          <>
+          <div className="post">
             <h1>Post Title:{post.title}</h1>
             <h4>Post description:{post.description}</h4>
-          </>
+          </div>
         );
-      })}
+        })}
+        </div>
     </div>
   );
 }

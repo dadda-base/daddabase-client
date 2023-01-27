@@ -1,5 +1,5 @@
 .Navbar{
-    background-color: #000;
+    background-color: rgb(5, 5, 5);
     color: #FFF5EE;
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .NavLink{
-    color: #FFF5EE;
+    color: #f1e7e7;
     font-size: 1vw;
     padding: 0.2vw;
     text-decoration: none;
@@ -30,11 +30,11 @@
 }
 
 .boy{
-   background-color: rgb(22, 144, 219);
+   background-color: rgb(9, 10, 10);
 }
 
 .girl{
-    background-color:rgb(230, 70, 224)
+    background-color:rgb(240, 231, 239)
 }
  
 .Navbar h1{

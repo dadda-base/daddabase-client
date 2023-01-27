@@ -1,6 +1,11 @@
 .ProfilePage{
-    background-color: rgb(19, 210, 38);
     height: 100%;
     margin: 3vw 0;
     padding: 6rem 3rem;
+    position: fixed;
+}
+
+.ProfilePage .profile-image{
+    height: 10vw;
+    border-radius: 50%;
 }

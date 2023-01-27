@@ -24,10 +24,11 @@ function ResourceListPage() {
   return (
     <div className="ResourceListPage">
       <AddResource refreshResources={getAllResources} />
-
+<div className="allResources">
       {resources.map((resource) => (
           <ResourceCard key={resource._id} {...resource} />
-          ))}    
+      ))} 
+      </div>    
     </div>
   );
 }
