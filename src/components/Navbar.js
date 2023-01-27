@@ -2,13 +2,26 @@ import "../components/Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../data/daddabase-logo.png"
 import { AuthContext } from "../context/auth.context";
-import { useContext} from 'react';
+import { useContext, useEffect, useState} from 'react';
 import { ThemeContext } from './../context/theme.context';
+import axios from "axios";
+const baseURL = process.env.REACT_APP_API_URL;
 
 function Navbar() {
-
+  const [profile, setProfile] = useState([]);
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const value = useContext(ThemeContext);
+ 
+
+  useEffect(()=>{
+    axios.get(`${baseURL}/api/users/${user._id}`)
+      .then((res) => {
+        setProfile(res.data)
+      })
+      .catch((error) => console.log(error))
+  }, [])
+
+  console.log(profile.profileImage);
 
   return (
     <div className={`Navbar ${value}`}>
@@ -38,6 +51,10 @@ function Navbar() {
             Log Out
           </button>
           <h5>{`Account Owner: ${user && user.name}`}</h5>
+          {profile.profileImage &&
+            <img src={profile.profileImage} alt=" "/>
+          }
+          
         </div>
       )}
 
