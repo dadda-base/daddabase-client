@@ -10,14 +10,12 @@ function CreatePostPage() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
   const navigate = useNavigate();
-  const { storedToken, authenticateUser } = useContext(AuthContext);
-
+  const { storedToken, authenticateUser ,user } = useContext(AuthContext);
   const handleTitle = (e) => setTitle(e.target.value);
-  const handleDescription = (e) => setDescription(e.target.value);
-
+  const handleDescription = (e) => setDescription(e.target.value)
     const handleCreatePostSubmit = (e) => {
         e.preventDefault();
-        const requestBody = { title, description };
+        const requestBody = { title, description, userId: user._id };
 
         axios.post(`${baseURL}/api/posts`, requestBody, {
             headers: { Authorization: `Bearer ${storedToken}` }
