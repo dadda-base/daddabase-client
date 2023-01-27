@@ -1,13 +1,17 @@
 import "../pages/ResourceDetailsPage.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
 
 const baseURL = process.env.REACT_APP_API_URL;
 
 function ResourceDetailsPage() {
   const [resource, setResource] = useState(null);
+
+  const { user } = useContext(AuthContext);
+  const userId = user._id
 
   const {resourceId} = useParams();
   const navigate = useNavigate(); 
@@ -35,9 +39,13 @@ function ResourceDetailsPage() {
     getResource()
   }, [])
   
+  // console.log('userId:' + user._id);
   return (
     <div className="ResourceDetailsPage">
-      {resource && (
+      {resource ? 
+      
+      
+      (
         <>
           <h1>{resource.title}</h1>
           <p style={{ maxWidth: "400px" }}>{resource.description} </p>
@@ -50,17 +58,27 @@ function ResourceDetailsPage() {
         : <></>
       }
         </>
-      )}
- 
+      )
+      : <h1>loading........</h1>
+      }
       <Link to="/resources">
         <button>Back to resources</button>
       </Link>
 
-      <Link to={`/resources/edit/${resourceId}`}>
+      {resource &&
+        userId == resource.user._id
+      ? 
+        <>
+        <Link to={`/resources/edit/${resourceId}`}>
         <button>Edit Resource</button>
       </Link> 
 
       <button onClick={deleteResource}>Delete</button>
+        </>
+       : <></>
+      }
+      
+      
 
     </div>
   );

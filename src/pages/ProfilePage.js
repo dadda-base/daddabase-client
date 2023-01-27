@@ -20,6 +20,7 @@ function ProfilePage() {
       .then((response) => {
         const oneProfile = response.data;
         console.log(oneProfile.posts)
+        console.log(oneProfile.resources)
         setProfile(oneProfile)
       })
       .catch((error) => console.log(error));
