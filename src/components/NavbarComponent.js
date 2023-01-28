@@ -85,7 +85,7 @@ const NavbarComponent = (props) => {
                 <Badge pill bg="danger">
                   2
                 </Badge>
-                <i class="bi bi-cart4"></i>
+                <i className="bi bi-cart4"></i>
                 <span className="ms-1">Bonus</span>
               </Nav.Link>
             </LinkContainer>

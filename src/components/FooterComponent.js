@@ -1,5 +1,4 @@
 import { Col, Container, Row } from "react-bootstrap";
-
 const FooterComponent = () => {
   return (
     <footer>
@@ -39,7 +38,7 @@ const FooterComponent = () => {
                   href="https://www.facebook.com/david.mullally.7"
                   target="_blank"
                 >
-                  <i class="fa-brands fa-facebook fa-2x socials"></i>
+                  <i className="fa-brands fa-facebook fa-2x socials"></i>
                 </a>
                 <a href="https://twitter.com/IMeamtWhatISaid" target="_blank">
                   <i className="fa-brands fa-twitter fa-2x socials"></i>
@@ -60,7 +59,7 @@ const FooterComponent = () => {
                   <i className="fa-brands fa-linkedin fa-2x socials"></i>
                 </a>
               </div>
-            "Copyright &copy; DaddaBase"
+            Copyright &copy; DaddaBase
           </Col>
         </Row>
       </Container>
