@@ -3,7 +3,7 @@ import image from "../data/daddabase-hompage.png"
 function HomePage() {
   return(
   <div className="HomePage">
-      <img src={image} alt="" />
+      <img className="HomePage-image"src={image} alt="" />
     </div>
   )
 }

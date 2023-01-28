@@ -1,10 +1,6 @@
-.HomePage{
-    background-color: rgb(235, 152, 152);
-    height: 100%;
-}
-
-.HomePage img{
-    position: fixed;
+.HomePage-image{
     width: 100vw;
-
+    height: 85vh;
+    position: relative;
+    z-index: -1;
 }

@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/auth.context";
 ///////Our Components///////////
 ///Components/////
-import Navbar from "./components/Navbar";
+import NavbarComponent from "./components/NavbarComponent";
 /////pages///////
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
@@ -13,12 +13,13 @@ import ErrorPage from "./pages/ErrorPage";
 import ProfilePage from "./pages/ProfilePage";
 import ResourceListPage from "./pages/ResourceListPage";
 import PostsPage from "./pages/PostsPage";
-import Footer from "./components/Footer";
+import Footer from "./components/FooterComponent";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import ProfileEditPage from "./pages/ProfileEditPage"
 import CreatePostPage from "./pages/CreatePostPage";
 import EditResourcePage from "./pages/EditResourcePage";
 import axios from "axios";
+import ResponsiveNavbar from "./components/ResponsiveNavbar";
 /////////////////////////////////
 
 function App() {
@@ -55,14 +56,12 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-  console.log(profile)
-
 
   return (
     <div className="App">
-      <Navbar profileImage={profile.profileImage} />
+      <NavbarComponent profile={profile} />
       <Routes>
-        <Route path={"/"} element={<ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />}  />
+        <Route path={"/"} element={<HomePage />}  />
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/logIn"} element={<LogInPage />} />
         <Route path={`/profiles/:userId`} element={<ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />} />

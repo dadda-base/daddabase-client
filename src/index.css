@@ -1,16 +1,36 @@
 body {
-  height: 50vw;
-  position: relative;
-  width: 100vw;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    position: relative;
+    min-height: 100%;
+    /*required for positioning of the footer to work*/
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  .Footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+  }
+  
+  .contact {
+    font-size: 1.5vw;
+  }
+  
+  .socials {
+    margin: 0 0.2vw;
+  }

@@ -4,8 +4,6 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ResourceCard from "../components/ResourceCard";
-import Navbar from "../components/Navbar";
-
 
 function ProfilePage(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
