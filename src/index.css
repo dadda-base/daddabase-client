@@ -17,6 +17,10 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+
+  .logo{
+    height: 4vw;
+  }
   
   .Footer {
     display: flex;
@@ -33,4 +37,8 @@ body {
   
   .socials {
     margin: 0 0.2vw;
+  }
+
+  .card-image{
+    height: 5vw;
   }

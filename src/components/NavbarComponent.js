@@ -12,13 +12,22 @@ import {
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
+import logo from "../data/daddabase-logo.png";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
 
-const NavbarComponent = () => {
+const NavbarComponent = (props) => {
+  console.log(props.profile)
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { storedToken, authenticateUser } = useContext(AuthContext);
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand className="me-5" href="/">DaddaBase</Navbar.Brand>
+          <Navbar.Brand className="me-5" href="/">
+            <img className="logo" src={logo} alt="error" />
+            DaddaBase
+          </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -42,29 +51,43 @@ const NavbarComponent = () => {
                 <span className="position-absolute top-1 start-10 translate-middle p-2 border bg-danger border-light rounded-circle"></span>
               </Nav.Link>
             </LinkContainer>
-            <Nav.Link href="/bonus2">Placeholder</Nav.Link>
-            <Nav.Link href="/bonus3">Placeholder</Nav.Link>
-            <NavDropdown title="John Doe" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} eventKey="/user/:userId" to="/user/:userId">
-                My Profile
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item to>Log Out</NavDropdown.Item>
-            </NavDropdown>
-            <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/register">
-              <Nav.Link>Sign up</Nav.Link>
-            </LinkContainer>
+            <Nav.Link href="/posts">Posts</Nav.Link>
+            <Nav.Link href="/resources">Resources</Nav.Link>
+
+            {isLoggedIn && (
+              <>
+                <NavDropdown title={props.profile.name} id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={Link}
+                    eventKey={`/profiles/${props.profile._id}`}
+                    to={`/profiles/${props.profile._id}`}
+                  >
+                    My Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item to>Log Out</NavDropdown.Item>
+                </NavDropdown>
+              </>
+            )}
+            {!isLoggedIn && (
+              <>
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/register">
+                  <Nav.Link>Sign up</Nav.Link>
+                </LinkContainer>
+              </>
+            )}
+
             <LinkContainer to="/cart">
               <Nav.Link>
                 <Badge pill bg="danger">
                   2
                 </Badge>
                 <i class="bi bi-cart4"></i>
-                <span className="ms-1">Bonus</span>             
-                </Nav.Link>
+                <span className="ms-1">Bonus</span>
+              </Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

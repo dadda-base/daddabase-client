@@ -19,13 +19,12 @@ import ProfileEditPage from "./pages/ProfileEditPage"
 import CreatePostPage from "./pages/CreatePostPage";
 import EditResourcePage from "./pages/EditResourcePage";
 import axios from "axios";
-import ResponsiveNavbar from "./components/ResponsiveNavbar";
 /////////////////////////////////
 
 function App() {
   const baseURL = process.env.REACT_APP_API_URL;
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  const { storedToken, authenticateUser } = useContext(AuthContext);
+  const { storedToken} = useContext(AuthContext);
   const navigate = useNavigate();
   const [profile, setProfile] = useState([]);
   const getUserProfile = () => {
