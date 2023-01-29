@@ -22,7 +22,7 @@ const ProductForListComponent = ({ images, index }) => {
             </Card.Text>
             <Card.Text className="h4">
               $135{" "}
-              <LinkContainer to="/products/:productId">
+              <LinkContainer to="/products/:productid">
                 <Button variant="danger">view Product</Button>
               </LinkContainer>
             </Card.Text>

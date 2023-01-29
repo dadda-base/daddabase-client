@@ -36,10 +36,15 @@ const ProductListPage = () => {
           </ListGroup>
         </Col>
         <Col md={9}>
-          {Array.from({ length: 5 }).map((_, index) => 
-            <ProductForListComponent key={index} images={ ["jokes", "music", "resources", "posts", "merch"]} index={index} />
-          )}
-
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"center", justifyContent: "space-around" }}>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <ProductForListComponent
+                key={index}
+                images={["jokes", "music", "resources", "posts", "merch"]}
+                index={index}
+              />
+            ))}
+          </div>
           <PaginationComponent />
         </Col>
       </Row>

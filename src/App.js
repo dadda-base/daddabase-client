@@ -22,6 +22,8 @@ import ProfileEditPage from "./pages/ProfileEditPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import EditResourcePage from "./pages/EditResourcePage";
 import ProductListPage from "./pages/ProductListPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import CartPage from "./pages/CartPage"
 /////////////////////////////////
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -93,7 +95,9 @@ function App() {
           />
           <Route path={"/posts"} element={<PostsPage />} />
           <Route path={"/createpost"} element={<CreatePostPage />} />
-          <Route path="/products/" element={<ProductListPage />} />
+          <Route path="/products" element={<ProductListPage />} />
+          <Route path="/products/:productid" element={<ProductDetailsPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
