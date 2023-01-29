@@ -66,7 +66,7 @@ function ResourceDetailsPage() {
       </Link>
 
       {resource &&
-        userId == resource.user._id
+        userId == resource.user?._id
       ? 
         <>
         <Link to={`/resources/edit/${resourceId}`}>
