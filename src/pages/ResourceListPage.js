@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Card, Container, Nav, Row } from "react-bootstrap";
 import AddResource from "../components/AddResource";
-import ResourceCard from "../components/ResourceCard";
+import { LinkContainer } from "react-router-bootstrap";
 import "../pages/ResourceListPage.css";
 
 const baseURL = process.env.REACT_APP_API_URL;
@@ -27,13 +27,19 @@ function ResourceListPage() {
       <AddResource refreshResources={getAllResources} />
 
       <Container>
-        {resources.map((resource) => (
-          <Row xs={1} md={2} lg={3} className=" g-4 mt-3">
-            <ResourceCard key={resource._id} {...resource} />
-
-          </Row>
-        ))}
-
+        <Row xs={1} md={2} lg={3} className="g-4 mt-2">
+          {resources.map((resource) => (
+            <Card style={{ padding: "2vw"}} className="resourceCard">
+              <Card.Body >
+                <h1>{resource.title}</h1>
+                <p>{resource.description}</p>
+                <LinkContainer to={`/resources/${resource._id}`}>
+                  <Button variant="primary">Details</Button>
+                </LinkContainer>
+              </Card.Body>
+            </Card>
+          ))}
+        </Row>
       </Container>
 
       {/* <div className="allResources">

@@ -14,7 +14,7 @@ function AddResource(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const requestBody = { title, description, imageUrl, videoUrl , userId: user._id};
+        const requestBody = { title, description, imageUrl, videoUrl , userId: user?._id};
         axios.post(baseURL + "/api/resources", requestBody)
             .then((response) => {
                 setTitle("");
