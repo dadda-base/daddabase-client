@@ -1,12 +1,12 @@
 .SignUpPage{
-    background-color:rgb(169, 111, 210);
-    border-radius: 10vw;
-    margin: 3vw;
-    padding: 3vw;
-}
-
-.form{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     flex-direction: column;
-    width: 20%;
-}
+ }
+ 
+ .form{
+     display: flex;
+     flex-direction: column;
+ }

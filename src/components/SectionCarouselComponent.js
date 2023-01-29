@@ -1,56 +1,60 @@
 import Carousel from "react-bootstrap/Carousel";
 import { LinkContainer } from "react-router-bootstrap";
-import carousel1 from "../data/carousel-1.webp";
-import carousel2 from "../data/carousel-2.jpg";
-import carousel3 from "../data/carousel-3.jpg";
+
 const SectionCarouselComponent = () => {
 
   const cursorPointer = {
     cursor: "pointer",
   }
-  
+
   return (
     <Carousel>
       <Carousel.Item>
         <img
+          objectFit="cover"
+          crossOrigin="anonymous"
           className="d-block w-100"
           style={{ height: "30vh" }}
-          src={carousel1}
+          src={"/images/carousel-1.webp"}
           alt="First slide"
         />
         <Carousel.Caption>
           <LinkContainer style={cursorPointer} to="/dad-jokes">
-            <h3>Dad Jokes</h3>
+            <h1>Dad Jokes</h1>
           </LinkContainer>
           <p>Stock up on jokes</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
+          objectFit="cover"
+          crossOrigin="anonymous"
           className="d-block w-100"
           style={{ height: "30vh" }}
-          src={carousel2}
+          src={"/images/carousel-2.jpg"}
           alt="Second slide"
         />
 
         <Carousel.Caption>
         <LinkContainer style={cursorPointer} to="/resources">
-            <h3>Resources</h3>
+            <h1>Resources</h1>
           </LinkContainer>
           <p>Help, advice, services and more.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
+          objectFit="cover"
+          crossOrigin="anonymous"
           className="d-block w-100"
           style={{ height: "30vh" }}
-          src={carousel3}
+          src={"/images/carousel-3.jpg"}
           alt="Third slide"
         />
 
         <Carousel.Caption>
           <LinkContainer style={cursorPointer} to="/dad-music">
-            <h3>Dad Music</h3>
+            <h1>Dad Music</h1>
           </LinkContainer>
           <p>
            Best music for dads

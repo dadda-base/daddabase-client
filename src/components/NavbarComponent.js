@@ -74,7 +74,7 @@ const NavbarComponent = (props) => {
                 <LinkContainer to="/login">
                   <Nav.Link>Login</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/register">
+                <LinkContainer to="/signup">
                   <Nav.Link>Sign up</Nav.Link>
                 </LinkContainer>
               </>

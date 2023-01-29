@@ -4,8 +4,8 @@ const FooterComponent = () => {
     <footer>
       <Container fluid>
         <Row className="mt-5">
-          <Col className="bg-light text-black py-3 Footer">
-              <div className="ms-5">
+          <Col className="bg-light text-center text-black py-1 Footer">
+              <div className="ms-5 footer-links">
                 <span className="contact">Xavier Chang</span>
                 <a
                   href="https://www.facebook.com/david.mullally.7"
@@ -32,7 +32,7 @@ const FooterComponent = () => {
                   <i className="fa-brands fa-linkedin fa-2x socials"></i>
                 </a>
               </div>
-              <div className="ms-5">
+              <div className="ms-5 footer-links" >
                 <span className="contact">Dave Mullally</span>
                 <a
                   href="https://www.facebook.com/david.mullally.7"
@@ -59,7 +59,7 @@ const FooterComponent = () => {
                   <i className="fa-brands fa-linkedin fa-2x socials"></i>
                 </a>
               </div>
-            Copyright &copy; DaddaBase
+            <span>Copyright &copy; DaddaBase</span>
           </Col>
         </Row>
       </Container>
