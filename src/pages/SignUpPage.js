@@ -16,7 +16,16 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 function SignUpPage() {
   const [validated, setValidated] = useState(false);
-
+  const onChange = () => {
+    const password = document.querySelector("input[name=password]")
+    const confirmPassword = document.querySelector("input[name=confirmPassword]")
+    if (confirmPassword.value === password.value) {
+      confirmPassword.setCustomValidity("")
+    }
+    else {
+      confirmPassword.setCustomValidity("Passwords didn't match")
+    }
+  }
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -97,7 +106,8 @@ function SignUpPage() {
                 placeholder="choose a password"
                 required
                 name="password"
-                minLenght={6}
+                minlenght={6}
+                onChange={onChange}
               />
               <Form.Text>
                 {" "}
@@ -116,10 +126,11 @@ function SignUpPage() {
                 placeholder="confirm password"
                 required
                 name="confirmPassword"
-                minLenght={6}
+                minlenght={6}
+                onChange={onChange}
               />
               <Form.Control.Feedback type="invalid">
-                Passwords did not match!{" "}
+                passwords don't match
               </Form.Control.Feedback>
             </Form.Group>
             <Row className="pb-2">
@@ -136,7 +147,7 @@ function SignUpPage() {
                 role="status"
                 aria-hidden="true"
               />
-              Submit
+              Sign up
             </Button>
             <Alert show={true} variant="danger">
               eg. User with this email already exists!
