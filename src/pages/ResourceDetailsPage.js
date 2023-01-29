@@ -11,7 +11,7 @@ function ResourceDetailsPage() {
   const [resource, setResource] = useState(null);
 
   const { user } = useContext(AuthContext);
-  const userId = user._id
+  const userId = user?._id
 
   const {resourceId} = useParams();
   const navigate = useNavigate(); 
