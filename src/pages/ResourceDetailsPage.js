@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -13,10 +15,10 @@ function ResourceDetailsPage() {
   const { user } = useContext(AuthContext);
   const userId = user?._id
 
-  const {resourceId} = useParams();
-  const navigate = useNavigate(); 
-    
-  const getResource = () => {        
+  const { resourceId } = useParams();
+  const navigate = useNavigate();
+
+  const getResource = () => {
     axios
       .get(baseURL + "/api/resources/" + resourceId)
       .then((response) => {
@@ -33,53 +35,52 @@ function ResourceDetailsPage() {
         navigate("/resources");
       })
       .catch((err) => console.log(err));
-  };  
+  };
 
   useEffect(() => {
     getResource()
   }, [])
-  
+
   // console.log('userId:' + user._id);
   return (
     <div className="ResourceDetailsPage">
-      {resource ? 
-      
-      
-      (
-        <>
-          <h1>{resource.title}</h1>
-          <p style={{ maxWidth: "400px" }}>{resource.description} </p>
-      {/* if statement and show article, img or video */}
-      { resource.imageUrl?  
-        <img src={resource.imageUrl} alt="" /> : <></>
-      }
-      { resource.videoUrl? 
-        <ReactPlayer url={resource.videoUrl} width="50vw" height="40vh" playing={false} controls={true} />
-        : <></>
-      }
-        </>
-      )
-      : <h1>loading........</h1>
-      }
-      <Link to="/resources">
-        <button>Back to resources</button>
-      </Link>
+      <Card style={{ width: '80vw' }} className="ResourceDetailsCard">
+        {resource ? (
+          <>
+            {resource.imageUrl ?
+              <Card.Img variant="top" src={resource.imageUrl} alt="" /> : <></>
+            }
+            {resource.videoUrl ?
+              <ReactPlayer className="resourceVideo" url={resource.videoUrl} playing={false} controls={true} width="75vw" height="80vh"/>
+              : <></>
+            }
+            <Card.Body className="ResourceDetails">
+              <Card.Title><h1>Title: {resource.title}</h1></Card.Title>
+              <Card.Text><p>{resource.description}</p></Card.Text>
 
-      {resource &&
-        userId == resource.user?._id
-      ? 
-        <>
-        <Link to={`/resources/edit/${resourceId}`}>
-        <button>Edit Resource</button>
-      </Link> 
 
-      <button onClick={deleteResource}>Delete</button>
-        </>
-       : <></>
-      }
-      
-      
+              <Link to="/resources">
+                <button>All resources</button>
+              </Link>
 
+              {resource &&
+                userId == resource.user?._id
+                ?
+                <>
+                  <Link to={`/resources/edit/${resourceId}`}>
+                    <button>Edit Resource</button>
+                  </Link>
+
+                  <button id="deleteButton" onClick={deleteResource}>Delete</button>
+                </>
+                : <></>
+              }
+            </Card.Body>
+          </>
+        )
+          : <h1>loading........</h1>
+        }
+      </Card>
     </div>
   );
 }
