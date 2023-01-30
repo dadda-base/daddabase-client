@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import "./EditResourcePage.css"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -28,7 +31,7 @@ function EditResourcePage() {
         //project id change then update
     }, [resourceId]);
 
-    const handleFormSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const requestBody = { title, description, imageUrl, videoUrl };
@@ -42,44 +45,58 @@ function EditResourcePage() {
 
 
     return (
-        <div className="EditResourcePage">
-            <h3>Edit the Resource</h3>
+        <Form onSubmit={handleSubmit} className="editResource">
+            <h3 id="editResourceTitle">Edit the Resource</h3>
+            <Container className="editResourceContainer">
+                <Form.Group className="mb-3" controlId="ControlInput1">
+                    <Form.Label>Title:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        placeholder="Enter title" />
+                </Form.Group>
 
-            <form onSubmit={handleFormSubmit}>
-                <label>Title:</label>
-                <input
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+                <Form.Group className="mb-3" controlId="ControlTextarea1">
+                    <Form.Label>Description:</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
+                        type="text"
+                        name="description"
+                        value={description}
+                        placeholder="What's the resource about?"
+                        onChange={(e) => setDescription(e.target.value)} />
+                </Form.Group>
 
-                <label>Description:</label>
-                <textarea
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                <Form.Group className="mb-3" controlId="ControlInput2">
+                    <Form.Label>URL of image:</Form.Label>
+                    <Form.Control
+                        type="url"
+                        name="imageUrl"
+                        value={imageUrl}
+                        placeholder="url of image"
+                        onChange={(e) => setImageUrl(e.target.value)} />
+                </Form.Group>
 
-                <label>URL of image or video:</label>
-                <input
-                    type="url"
-                    name="imageUrl"
-                    value={imageUrl}
-                    placeholder="enter the url of image"
-                    onChange={(e) => setImageUrl(e.target.value)}
-                />
-                <input
-                    type="url"
-                    name="videoUrl"
-                    value={videoUrl}
-                    placeholder="enter the url of video"
-                    onChange={(e) => setVideoUrl(e.target.value)}
-                />
+                <Form.Group className="mb-3" controlId="ControlInput3">
+                    <Form.Label>URL of video:</Form.Label>
+                    <Form.Control
+                        type="url"
+                        name="videoUrl"
+                        value={videoUrl}
+                        placeholder="url of video"
+                        onChange={(e) => setVideoUrl(e.target.value)} />
+                </Form.Group>
 
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Container>
+        </Form>
+        
     );
 }
 

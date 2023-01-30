@@ -1,4 +1,11 @@
-.EditResourcePage{
+.editResource{
     background-color: antiquewhite;
-    margin: 5rem;
+    margin: 3rem auto;
+    padding: 2rem;
+    width: 60vw;
+    border-radius: 3rem;
+}
+
+.editResource h3 {
+    text-align: center;
 }

@@ -68,7 +68,7 @@ function App() {
         <Route element={<RoutesWithUserChatComponent />}>
           <Route path={"/"} element={<HomePage />} />
           <Route path={"/signup"} element={<SignUpPage />} />
-          <Route path={"/logIn"} element={<LogInPage />} />
+          <Route path={"/login"} element={<LogInPage />} />
           <Route
             path={`/profiles/:userId`}
             element={

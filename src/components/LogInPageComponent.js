@@ -62,7 +62,7 @@ function LogInPageComponent(props) {
                 <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                 <Form.Control
                   type="email"
-                  placeholder="Username"
+                  placeholder="user email"
                   aria-describedby="inputGroupPrepend"
                   required
                   name="email"
@@ -75,7 +75,7 @@ function LogInPageComponent(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="choose a password"
+                placeholder="at least 6 characters, at least one number, one lowercase and one uppercase letter"
                 required
                 name="password"
                 onChange={handlePassword}
@@ -89,18 +89,18 @@ function LogInPageComponent(props) {
               </Col>
             </Row>
             <Button type="submit">
-              <Spinner
+              {/* <Spinner
                 as="span"
                 animation="border"
                 size="sm"
                 role="status"
                 aria-hidden="true"
-              />
+              /> */}
               Login
             </Button>
-            <Alert show={true} variant="danger">
+            {/* <Alert show={true} variant="danger">
               eg. invalid credentials
-            </Alert>
+            </Alert> */}
           </Form>
         </Col>
       </Row>
