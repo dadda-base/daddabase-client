@@ -11,7 +11,7 @@ const SectionCarouselComponent = () => {
     <Carousel>
       <Carousel.Item>
         <img
-          objectFit="cover"
+          objectfit="cover"
           crossOrigin="anonymous"
           className="d-block w-100"
           style={{ height: "30vh" }}
@@ -27,7 +27,7 @@ const SectionCarouselComponent = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          objectFit="cover"
+          objectfit="cover"
           crossOrigin="anonymous"
           className="d-block w-100"
           style={{ height: "30vh" }}
@@ -44,7 +44,7 @@ const SectionCarouselComponent = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          objectFit="cover"
+          objectfit="cover"
           crossOrigin="anonymous"
           className="d-block w-100"
           style={{ height: "30vh" }}

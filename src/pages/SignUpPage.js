@@ -12,11 +12,22 @@ import {
   Spinner,
   Alert,
 } from "react-bootstrap";
-const baseURL = process.env.REACT_APP_API_URL;
 
 function SignUpPage() {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [validated, setValidated] = useState(false);
-  const onChange = () => {
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
+  const handleName = (e) => setName(e.target.value);
+
+
+ {/*  const onChange = () => {
     const password = document.querySelector("input[name=password]")
     const confirmPassword = document.querySelector("input[name=confirmPassword]")
     if (confirmPassword.value === password.value) {
@@ -25,52 +36,35 @@ function SignUpPage() {
     else {
       confirmPassword.setCustomValidity("Passwords didn't match")
     }
-  }
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
+  }  */} 
+
+  const handleSignUpSubmit = (event) => {
+    //const form = event.currentTarget;
+  { /* if (form.checkValidity() === false) {
+     
       event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
-
-  const navigate = useNavigate();
-
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
-  const handleName = (e) => setName(e.target.value);
-
-  const handleSignupSubmit = (e) => {
-    e.preventDefault();
-    // Create an object representing the request body
-    const requestBody = { email, password, name };
-    // Make an axios request to the API
-    // If the POST request is a successful redirect to the login page
-    // If the request resolves with an error, set the error message in the state
-    axios
-      .post(`${baseURL}/auth/signup`, requestBody)
+     
+    }*/}
+    event.preventDefault();
+    const requestBody = { email, password, name};
+    console.log(email)
+    axios.post(`${baseURL}/auth/signup`, requestBody)
       .then((response) => {
-        console.log(baseURL);
-        navigate("/logIn");
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
-
+      console.log(`axios response:${response}`)
+      navigate('/logIn');
+    })
+    .catch((error) => {
+      const errorDescription = error.response.data.message;
+      setErrorMessage(errorDescription);
+    })
+};
+ 
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
         <Col md={8}>
           <h1>Sign Up</h1>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form noValidate validated={validated} onSubmit={handleSignUpSubmit}>
             <Form.Group controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -78,6 +72,7 @@ function SignUpPage() {
                 type="text"
                 placeholder="Name"
                 name="name"
+                onChange={handleName}
               />
               <Form.Control.Feedback type="invalid">
                 Enter a name
@@ -89,10 +84,11 @@ function SignUpPage() {
                 <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                 <Form.Control
                   type="email"
-                  placeholder="Username"
+                  placeholder="email"
                   aria-describedby="inputGroupPrepend"
                   required
                   name="email"
+                  onChange={handleEmail}
                 />
                 <Form.Control.Feedback type="invalid">
                   enter a valid email address
@@ -107,7 +103,7 @@ function SignUpPage() {
                 required
                 name="password"
                 minlenght={6}
-                onChange={onChange}
+                onChange={handlePassword}
               />
               <Form.Text>
                 {" "}
@@ -119,7 +115,7 @@ function SignUpPage() {
                 uppercase and one lowercase{" "}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="formBasicPasswordRepeat">
+          { /* <Form.Group controlId="formBasicPasswordRepeat">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
@@ -132,7 +128,7 @@ function SignUpPage() {
               <Form.Control.Feedback type="invalid">
                 passwords don't match
               </Form.Control.Feedback>
-            </Form.Group>
+            </Form.Group> */}
             <Row className="pb-2">
               <Col>
                 Do you have an account already?
@@ -161,45 +157,6 @@ function SignUpPage() {
     </Container>
   );
 
-  {
-    /*<div className="SignUpPage">
-      <h1>Sign Up</h1>
-
-      <form className="form" onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input 
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-        />
-
-        <label>Password:</label>
-        <input 
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input 
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleName}
-        />
-
-        <button type="submit">Sign Up</button>
-      </form>
-
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
-  */
-  }
 }
 
 export default SignUpPage;
