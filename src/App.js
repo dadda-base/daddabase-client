@@ -23,6 +23,7 @@ import EditResourcePage from "./pages/EditResourcePage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage"
+import CategoryCardComponent from "./components/CategoryCardComponent";
 /////////////////////////////////
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
   useEffect(() => {
     getUserProfile();
   }, [user]);
+
+  
   const deleteUser = () => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -65,7 +68,6 @@ function App() {
     <div className="App">
       <NavbarComponent profile={profile} />
       <Routes>
-        <Route element={<RoutesWithUserChatComponent />}>
           <Route path={"/"} element={<HomePage />} />
           <Route path={"/signup"} element={<SignUpPage />} />
           <Route path={"/logIn"} element={<LogInPage />} />
@@ -91,12 +93,12 @@ function App() {
             path={"/resources/edit/:resourceId"}
             element={<EditResourcePage />}
           />
-          <Route path={"/posts"} element={<PostsPage />} />
+          <Route path="/posts" element={<PostsPage />} />
           <Route path="/products" element={<ProductListPage />} />
-          <Route path="/products/:productid" element={<ProductDetailsPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/products/:productId" element={<ProductDetailsPage />} />
+         <Route path="/cart" element={<CartPage />} />
+         <Route path="/categories/:categoryId" element= {<CategoryCardComponent /> } />
           <Route path="*" element={<ErrorPage />} />
-        </Route>
       </Routes>
       <Footer />
     </div>

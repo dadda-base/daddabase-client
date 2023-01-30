@@ -31,7 +31,7 @@ function PostsPage() {
 
   return (
     <div className="PostListPage">
-      <AddPost refreshPosts={getAllPosts} />
+      <AddPost style={{position: "absolute", top: "0"}} refreshPosts={getAllPosts} />
 
       <Container>
         <Row xs={1} md={2} lg={3} className="g-4 mt-2">

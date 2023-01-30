@@ -52,13 +52,13 @@ const NavbarComponent = (props) => {
             </LinkContainer>
             <Nav.Link href="/posts">Posts</Nav.Link>
             <Nav.Link href="/resources">Resources</Nav.Link>
-
+            <Nav.Link href="/products">Products</Nav.Link>
             {isLoggedIn && (
               <>
                 <NavDropdown title={props.profile.name} id="collasible-nav-dropdown">
                   <NavDropdown.Item
                     as={Link}
-                    eventKey={`/profiles/${props.profile._id}`}
+                    eventKey={`/profiless/${props.profile._id}`}
                     to={`/profiles/${props.profile._id}`}
                   >
                     My Profile

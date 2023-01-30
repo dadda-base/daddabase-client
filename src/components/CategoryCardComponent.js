@@ -14,9 +14,9 @@ const CategoryCardComponent = (props) => {
         src={props.category.image}
       />
       <Card.Body>
-        <Card.Title>{props.category.category}</Card.Title>
+        <Card.Title>{props.category.name}</Card.Title>
         <Card.Text>{props.category.description}</Card.Text>
-        <LinkContainer to={props.category.route}>
+        <LinkContainer to={'/categories/' + props.category._id}>
           <Button variant="primary">Go To Jokes</Button>
         </LinkContainer>
       </Card.Body>

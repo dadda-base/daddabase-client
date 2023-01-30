@@ -1,26 +1,45 @@
 import "../pages/ProfilePage.css";
-import { useContext} from "react";
+import { useContext, useEffect, useState} from "react";
 import { AuthContext } from "../context/auth.context";
 import { Link} from "react-router-dom";
-
+import axios from 'axios'
+const baseURL = process.env.REACT_APP_API_URL;
 
 function ProfilePage(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const { storedToken, authenticateUser } = useContext(AuthContext);
+  const [profile, setProfile] = useState([])
+  console.log(profile)
+    const getProfile = () => {
+      axios.get(baseURL + "/api/users/" + user._id, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+        .then((res) => {
+          setProfile(res.data)
+        })
+        .catch((error) => console.log(error));
+    }
+  
+    useEffect(() => {
+      getProfile();
+    }, [])
+  
+
+
   return (
     <>
       <div className="ProfilePage">
         {isLoggedIn && (
           <>
-            <img className="profile-image" src={props.profile.profileImage} alt="" />
-            <h1>{props.profile.username}</h1>
+            <img className="profile-image" src={profile.profileImage} alt="" />
+            <h1>{profile.username}</h1>
 
-            <Link to={`/profiles/${user._id}/edit`}> Edit Profile</Link>
+            <Link to={`/profiles/${profile._id}/edit`}> Edit Profile</Link>
             <button onClick={props.callbackToDeleteUser}> Delete Profile</button>
           </>
         )}
-        {props.profile.resources &&
-          props.profile.resources.map((resource) => {
+        {profile.resources &&
+          profile.resources.map((resource) => {
             return (
               <div className="ResourceCard card">
                 <Link to={`/resources/${resource._id}`}>
@@ -30,8 +49,8 @@ function ProfilePage(props) {
             )
           })
         }
-        {props.profile.posts &&
-          props.profile.posts.map((post) => {
+        {profile.posts &&
+          profile.posts.map((post) => {
             return (
               <div className="post">
                 <h1>Post Title:{post.title}</h1>
