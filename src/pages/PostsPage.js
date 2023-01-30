@@ -1,7 +1,8 @@
 import "../pages/PostsPage.css";
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Button, Card, Container, Row } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 function PostsPage() {
   const [posts, setPosts] = useState([]);
@@ -28,18 +29,23 @@ function PostsPage() {
   }, []);
 
   return (
-    <div className="PostsPage">
-      <Link className="Link" to="/createpost">Create Post</Link>
-      <div className="all-posts">
-        {posts.map((post) => {
-        return (
-          <div className="post">
-            <h1>Post Title:{post.title}</h1>
-            <h4>Post description:{post.description}</h4>
-          </div>
-        );
-        })}
-        </div>
+    <div className="postList">
+      <LinkContainer to="/createpost" id="createPostBtn">
+        <Button variant="primary">Create Post</Button>
+      </LinkContainer>
+
+      <Container>
+        <Row xs={1} md={2} lg={3} className="g-4 mt-2">
+          {posts.map((post) => (
+            <Card style={{ padding: "2vw" }} >
+              <Card.Body className="postCard">
+                <h2>{post.title}</h2>
+                <p>{post.description}</p>
+              </Card.Body>
+            </Card>
+          ))}
+        </Row>
+      </Container>
     </div>
   );
 }
