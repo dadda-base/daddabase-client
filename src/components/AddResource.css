@@ -1,4 +1,18 @@
-.AddResource{
-    margin-top: 3vw;
+.addResource{
+    margin: 0 3rem;
 }
 
+#addResourceTitle {
+    font-size: 3vw;
+    color: white;
+    background-color: skyblue;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.addResourceContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
