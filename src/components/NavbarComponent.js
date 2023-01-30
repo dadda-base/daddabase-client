@@ -17,7 +17,6 @@ import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
 const NavbarComponent = (props) => {
-  console.log(props.profile)
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const { storedToken, authenticateUser } = useContext(AuthContext);
   return (

@@ -1,9 +1,8 @@
 import "../pages/ProfilePage.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../context/auth.context";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import ResourceCard from "../components/ResourceCard";
+import { Link} from "react-router-dom";
+
 
 function ProfilePage(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);

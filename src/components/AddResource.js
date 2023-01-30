@@ -2,6 +2,9 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import "../components/AddResource.css"
 import { AuthContext } from "../context/auth.context";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Container } from "react-bootstrap";
 const baseURL = process.env.REACT_APP_API_URL;
 
 function AddResource(props) {
@@ -9,12 +12,12 @@ function AddResource(props) {
     const [description, setDescription] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [videoUrl, setVideoUrl] = useState("")
-    const { storedToken, authenticateUser ,user } = useContext(AuthContext);
+    const { storedToken, authenticateUser, user } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const requestBody = { title, description, imageUrl, videoUrl , userId: user._id};
+        const requestBody = { title, description, imageUrl, videoUrl, userId: user?._id };
         axios.post(baseURL + "/api/resources", requestBody)
             .then((response) => {
                 setTitle("");
@@ -27,47 +30,57 @@ function AddResource(props) {
     }
 
     return (
-        <div className="AddResource">
-            <h3>Add Resource</h3>
+        <Form onSubmit={handleSubmit} className="addResource">
+            <h3 id="addResourceTitle">Add Resource</h3>
+            <Container className="addResourceContainer">
+                <Form.Group className="mb-3" controlId="ControlInput1">
+                    <Form.Label>Title:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        placeholder="Enter title" />
+                </Form.Group>
 
-            <form className="addResourceForm" onSubmit={handleSubmit}>
-                <label>Title:
-                <input
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    />
-                   </label> 
+                <Form.Group className="mb-3" controlId="ControlTextarea1">
+                    <Form.Label>Description:</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
+                        type="text"
+                        name="description"
+                        value={description}
+                        placeholder="What's the resource about?"
+                        onChange={(e) => setDescription(e.target.value)} />
+                </Form.Group>
 
-                <label>Description:
-                <textarea
-                    type="text"
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-                </label>
-                <label>URL of image or video:
-                <input
-                    type="url"
-                    name="imageUrl"
-                    value={imageUrl}
-                    placeholder="enter the url of image"
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    />
-                    </label>
-                <input
-                    type="url"
-                    name="videoUrl"
-                    value={videoUrl}
-                    placeholder="enter the url of video"
-                    onChange={(e) => setVideoUrl(e.target.value)}
-                />
+                <Form.Group className="mb-3" controlId="ControlInput2">
+                    <Form.Label>URL of image:</Form.Label>
+                    <Form.Control
+                        type="url"
+                        name="imageUrl"
+                        value={imageUrl}
+                        placeholder="url of image"
+                        onChange={(e) => setImageUrl(e.target.value)} />
+                </Form.Group>
 
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+                <Form.Group className="mb-3" controlId="ControlInput3">
+                    <Form.Label>URL of video:</Form.Label>
+                    <Form.Control
+                        type="url"
+                        name="videoUrl"
+                        value={videoUrl}
+                        placeholder="url of video"
+                        onChange={(e) => setVideoUrl(e.target.value)} />
+                </Form.Group>
+            
+
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+            </Container>
+        </Form>
     )
 }
 

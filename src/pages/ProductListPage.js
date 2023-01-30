@@ -36,7 +36,7 @@ const ProductListPage = () => {
           </ListGroup>
         </Col>
         <Col md={9}>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"center", justifyContent: "space-around" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}>
             {Array.from({ length: 5 }).map((_, index) => (
               <ProductForListComponent
                 key={index}
