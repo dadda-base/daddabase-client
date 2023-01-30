@@ -18,6 +18,7 @@ function AddResource(props) {
         e.preventDefault();
 
         const requestBody = { title, description, imageUrl, videoUrl, userId: user?._id };
+
         axios.post(baseURL + "/api/resources", requestBody)
             .then((response) => {
                 setTitle("");
@@ -74,11 +75,11 @@ function AddResource(props) {
                         placeholder="url of video"
                         onChange={(e) => setVideoUrl(e.target.value)} />
                 </Form.Group>
-            
 
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
             </Container>
         </Form>
     )
