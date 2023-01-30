@@ -135,21 +135,21 @@ function SignUpPage() {
               </Col>
             </Row>
             <Button type="submit">
-              <Spinner
+              {/* <Spinner
                 as="span"
                 animation="border"
                 size="sm"
                 role="status"
                 aria-hidden="true"
-              />
+              /> */}
               Sign up
             </Button>
-            <Alert show={true} variant="danger">
+            {/* <Alert show={true} variant="danger">
               eg. User with this email already exists!
             </Alert>
             <Alert show={true} variant="info">
               eg. User created
-            </Alert>
+            </Alert> */}
           </Form>
         </Col>
       </Row>
