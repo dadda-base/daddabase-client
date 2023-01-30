@@ -11,43 +11,49 @@ import {
 } from "react-bootstrap";
 import AddedToCartMessageComponent from "../components/AddedToCartMessageComponent";
 import { Rating } from "react-simple-star-rating";
-import ImageZoom from "js-image-zoom";
-import { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import axios from 'axios';
+import {useState, useEffect} from 'react'
+function ProductDetailsPage() {
 
-const ProductDetailsPage = () => {
-    {/*var options = {
-        scale: 2,
-        offset: { vertical: 0, horizontal: 0 }
-    }
-    useEffect(() => {
-        new ImageZoom(document.getElementById("first"), options)
-        new ImageZoom(document.getElementById("second"), options)
-        new ImageZoom(document.getElementById("third"), options)
-        new ImageZoom(document.getElementById("forth").options)
-    })
-*/}
-  const { productId } = useParams();
-  console.log(productId);
+  
+  const{ productId} = useParams();
+  console.log(`productdetailsPage:${productId}`)
+  const [product, setProduct] = useState([]);
+  const baseURL = process.env.REACT_APP_API_URL;
+  const getProduct = () => {
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem("authToken");
+    // Send the token through the request "Authorization" Headers
+    axios
+      .get(`${baseURL}/api/products/${productId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setProduct(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // We set this effect will run only once, after the initial render
+  // by setting the empty dependency array - []
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+
+
+
+
+
   return (
     <Container>
       <AddedToCartMessageComponent />
       <Row className="mt-5">
               <Col style={{ zIndex: "1" }} crossOrigin="anonymous"md={4}>
           <div id="first">
-            <Image crossOrigin="anonymous" fluid src="/images/dad-music-cc.jpg" alt="" />
-          </div>
-          <br />
-          <div id="second">
-            <Image crossOrigin="anonymous" fluid src="/images/dad-jokes-cc.jpg" alt="" />
-          </div>
-          <br />
-          <div id="third">
-            <Image crossOrigin="anonymous" fluid src="/images/merch-category.png" alt="" />
-          </div>
-          <br />
-          <div id="fourth">
-            <Image crossOrigin="anonymous" fluid src="/images/merch-category.png" alt="" />
+            <Image crossOrigin="anonymous" fluid src={product.image} alt="" />
           </div>
           <br />
         </Col>
@@ -55,19 +61,19 @@ const ProductDetailsPage = () => {
           <Row>
             <Col md={8}>
               <ListGroup.Item>
-                <h1>Product Title</h1>
+                <h1>{product.name}</h1>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Rating readonly size={20} initialValue={3} /> (3)
               </ListGroup.Item>
               <ListGroup.Item>
-                Price<span className="fw-bold">$324</span>
+                Price<span className="fw-bold">${product.price}</span>
               </ListGroup.Item>
               <ListGroup.Item>
-                description lorem ipsum jasdjasg jdhd{" "}
+               {product.description}{" "}
               </ListGroup.Item>
               <ListGroup.Item>
-                Status <span className="fw-bold">In Stock</span>
+                Status <span className="fw-bold">{product.status}</span>
               </ListGroup.Item>
             </Col>
             <Col md={4}>
@@ -79,7 +85,7 @@ const ProductDetailsPage = () => {
                 <option value="3">4</option>
               </Form.Select>
               <ListGroup.Item>
-                Price<span className="fw-bold">$324</span>
+                Price<span className="fw-bold">{product.price}</span>
                           </ListGroup.Item>
                           <LinkContainer to="/cart">
               <Button style={{ width: "100%" }} variant="danger">
@@ -92,15 +98,7 @@ const ProductDetailsPage = () => {
             <Col className="mt-5">
               <h5>REVIEWS</h5>
               <ListGroup variant="flush">
-                {/* some dummy content for testing */}
-                {Array.from({ length: 15 }).map((_, index) => (
-                  <ListGroup.Item key={index}>
-                    John Doe <br />
-                    <Rating readonly size={20} initialValue={4} /> <br />
-                    20-09-2020 <br />
-                    example review
-                  </ListGroup.Item>
-                ))}
+             
               </ListGroup>
             </Col>
             <hr />

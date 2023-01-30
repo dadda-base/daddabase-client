@@ -6,8 +6,33 @@ import RatingFilterComponent from "../components/filterQueryResultOptions/Rating
 import CategoryFilterComponent from "../components/filterQueryResultOptions/CategoryFilterComponent";
 import ProductForListComponent from "../components/ProductForListComponent";
 import PaginationComponent from "../components/PaginationComponent";
+import axios from 'axios';
+import { useState, useEffect } from "react";
 
 const ProductListPage = () => {
+
+  const [products, setProducts] = useState([]);
+  const baseURL = process.env.REACT_APP_API_URL;
+  const getAllProducts = () => {
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem("authToken");
+    // Send the token through the request "Authorization" Headers
+    axios
+      .get(`${baseURL}/api/products`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setProducts(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // We set this effect will run only once, after the initial render
+  // by setting the empty dependency array - []
+  useEffect(() => {
+    getAllProducts();
+  }, []);
   return (
     <Container fluid>
       <Row>
@@ -37,12 +62,8 @@ const ProductListPage = () => {
         </Col>
         <Col md={9}>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <ProductForListComponent
-                key={index}
-                images={["jokes", "music", "resources", "posts", "merch"]}
-                index={index}
-              />
+            {products.map((product) => (
+              <ProductForListComponent key={product._id}  product={product} />
             ))}
           </div>
           <PaginationComponent />

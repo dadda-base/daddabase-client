@@ -26,21 +26,38 @@ function SignUpPage() {
   const handlePassword = (e) => setPassword(e.target.value);
   const handleName = (e) => setName(e.target.value);
 
+
+ const onChange = () => {
+    const password = document.querySelector("input[name=password]")
+   const confirmPassword = document.querySelector("input[name=confirmPassword]")
+   console.log(confirmPassword, password)
+    if (confirmPassword.value === password.value) {
+      confirmPassword.setCustomValidity("")
+    }
+    else {
+      confirmPassword.setCustomValidity("Passwords didn't match")
+    }
+  }
+
   const handleSignUpSubmit = (event) => {
+  const form = event.currentTarget;
+   if (form.checkValidity() === false) {
+     
+      event.stopPropagation();
+     
+    }
     event.preventDefault();
-    const requestBody = { email, password, name };
-    console.log(email)
+    const requestBody = { email, password, name};
     axios.post(`${baseURL}/auth/signup`, requestBody)
       .then((response) => {
-        console.log(`axios response:${response}`)
-        navigate('/logIn');
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      })
-  };
-
+      navigate('/logIn');
+    })
+    .catch((error) => {
+      const errorDescription = error.response.data.message;
+      setErrorMessage(errorDescription);
+    })
+};
+ 
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
@@ -97,7 +114,20 @@ function SignUpPage() {
                 uppercase and one lowercase{" "}
               </Form.Control.Feedback>
             </Form.Group>
-
+          <Form.Group controlId="formBasicPasswordRepeat">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="confirm password"
+                required
+                name="confirmPassword"
+                minlenght={6}
+                onChange={onChange}
+              />
+              <Form.Control.Feedback type="invalid">
+                passwords don't match
+              </Form.Control.Feedback>
+            </Form.Group> 
             <Row className="pb-2">
               <Col>
                 Do you have an account already?

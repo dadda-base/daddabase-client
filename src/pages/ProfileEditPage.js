@@ -34,19 +34,20 @@ function ProfileEditPage() {
         <>
           <h1>{user.name}</h1>
           <h1>{user.email}</h1>
-          <h1>{user._id}</h1>
           <form onSubmit={handleFormSubmit}>
             <input
               type="text"
               name="username"
-              value={username}
+              value={user.username}
               onChange={(e) => setUsername(e.target.value)}
+              placeholder="choose a username"
             />
 
             <input
               name="profileImage"
-              value={profileImage}
+              value={user.profileImage}
               onChange={(e) => setProfileImage(e.target.value)}
+              placeholder="enter an image url"
             />
 
             <input type="submit" value="Submit" />
