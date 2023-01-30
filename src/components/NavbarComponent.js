@@ -64,7 +64,9 @@ const NavbarComponent = (props) => {
                     My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item to>Log Out</NavDropdown.Item>
+                  {/*<NavDropdown.Item to>*/}
+                    <Button onClick={logOutUser}>Log Out</Button>
+                   {/* <NavDropdown.Item>*/}
                 </NavDropdown>
               </>
             )}
