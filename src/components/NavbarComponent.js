@@ -18,7 +18,7 @@ import { useContext } from "react";
 
 const NavbarComponent = (props) => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  const { storedToken, authenticateUser } = useContext(AuthContext);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>

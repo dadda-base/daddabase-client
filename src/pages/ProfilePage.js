@@ -6,7 +6,7 @@ import { Link} from "react-router-dom";
 
 function ProfilePage(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  const { storedToken, authenticateUser } = useContext(AuthContext);
+  
   return (
     <>
       <div className="ProfilePage">

@@ -1,14 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
 import AddResource from "../components/AddResource";
 import { LinkContainer } from "react-router-bootstrap";
 import "../pages/ResourceListPage.css";
+import { AuthContext } from "../context/auth.context";
 
 const baseURL = process.env.REACT_APP_API_URL;
 
 function ResourceListPage() {
   const [resources, setResources] = useState([])
+  const { isLoggedIn} = useContext(AuthContext);
 
   const getAllResources = () => {
     axios.get(baseURL + "/api/resources")
@@ -24,7 +26,9 @@ function ResourceListPage() {
 
   return (
     <div className="ResourceListPage">
+      {isLoggedIn &&
       <AddResource refreshResources={getAllResources} />
+      }
 
       <Container>
         <Row xs={1} md={2} lg={3} className="g-4 mt-2">

@@ -9,9 +9,8 @@ import {
   Spinner,
   InputGroup,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth.context";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import axios from "axios"
 
 function LogInPageComponent(props) {
@@ -82,13 +81,7 @@ function LogInPageComponent(props) {
                 onChange={handlePassword}
               />
             </Form.Group>
-         {  /* <Form.Group controlId="formBasicCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="keep me logged in"
-                name="doNotLogOut"
-              />
-            </Form.Group>*/}
+        
             <Row className="pb-2">
               <Col>
                 Don't have an account?
