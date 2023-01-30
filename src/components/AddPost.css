@@ -1,0 +1,18 @@
+.addPost{
+    margin: 0 3rem;
+}
+
+#addPostTitle {
+    font-size: 3vw;
+    color: white;
+    background-color: skyblue;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.addPostContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}

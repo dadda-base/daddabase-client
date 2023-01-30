@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import AddPost from "../components/AddPost";
 
 function PostsPage() {
   const [posts, setPosts] = useState([]);
@@ -29,10 +30,8 @@ function PostsPage() {
   }, []);
 
   return (
-    <div className="postList">
-      <LinkContainer to="/createpost" id="createPostBtn">
-        <Button variant="primary">Create Post</Button>
-      </LinkContainer>
+    <div className="PostListPage">
+      <AddPost refreshPosts={getAllPosts} />
 
       <Container>
         <Row xs={1} md={2} lg={3} className="g-4 mt-2">
