@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import {
-  Alert,
   Button,
   Col,
   Container,
@@ -86,18 +85,8 @@ function LogInPageComponent(props) {
               </Col>
             </Row>
             <Button type="submit">
-              {/* <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              /> */}
               Login
             </Button>
-            {/* <Alert show={true} variant="danger">
-              eg. invalid credentials
-            </Alert> */}
           </Form>
           { errorMessage && <p className="error-message">{errorMessage}</p> }
         </Col>

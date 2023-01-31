@@ -6,25 +6,22 @@ import axios from "axios";
 
 ///////Our Components///////////
 ///Components/////
-import NavbarComponent from "./components/NavbarComponent";
-import RoutesWithUserChatComponent from "./components/user/RoutesWithUserChatComponent";
-/////pages///////
-import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
-import LogInPage from "./pages/LogInPage";
-import ErrorPage from "./pages/ErrorPage";
-import ProfilePage from "./pages/ProfilePage";
-import ResourceListPage from "./pages/ResourceListPage";
-import PostsPage from "./pages/PostsPage";
-import Footer from "./components/FooterComponent";
-import ResourceDetailsPage from "./pages/ResourceDetailsPage";
-import ProfileEditPage from "./pages/ProfileEditPage";
-import EditResourcePage from "./pages/EditResourcePage";
-import ProductListPage from "./pages/ProductListPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
-import RandomDadJokePage from "./pages/RandomDadJokePage"
-import CartPage from "./pages/CartPage";
 import CategoryCardComponent from "./components/CategoryCardComponent";
+import NavbarComponent from "./components/NavbarComponent";
+/////pages///////
+import EditResourcePage from "./pages/EditResourcePage";
+import ErrorPage from "./pages/ErrorPage";
+import Footer from "./components/FooterComponent";
+import HomePage from "./pages/HomePage";
+import LogInPage from "./pages/LogInPage";
+import SignUpPage from "./pages/SignUpPage";
+import PostsPage from "./pages/PostsPage";
+import ProductListPage from "./pages/ProductListPage";
+import ProfilePage from "./pages/ProfilePage";
+import ProfileEditPage from "./pages/ProfileEditPage";
+import RandomDadJokePage from "./pages/RandomDadJokePage";
+import ResourceDetailsPage from "./pages/ResourceDetailsPage";
+import ResourceListPage from "./pages/ResourceListPage";
 /////////////////////////////////
 
 function App() {
@@ -67,36 +64,30 @@ function App() {
   return (
     <div className="App">
       <NavbarComponent profile={profile} />
+      {/*Auth Routes */}
       <Routes>
         <Route path={"/"} element={<HomePage />} />
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/login"} element={<LogInPage />} />
-        <Route
-          path={`/profiles/:userId`}
-          element={
-            <ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />
-          }
-        />
+        {/* profile routes */}
+        <Route path={`/profiles/:userId`} element={<ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />}/>
         <Route path={"/profiles/:userId/edit"} element={<ProfileEditPage />} />
+        {/* resource routes */}
         <Route path={"/resources"} element={<ResourceListPage />} />
-        <Route
-          path={"/resources/:resourceId"}
-          element={<ResourceDetailsPage />}
-        />
-        <Route
-          path={"/resources/edit/:resourceId"}
-          element={<EditResourcePage />}
-        />
+        <Route path={"/resources/:resourceId"} element={<ResourceDetailsPage />}/>
+        <Route path={"/resources/edit/:resourceId"} element={<EditResourcePage />} />
+        
+
+
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/products" element={<ProductListPage />} />
-        <Route path="/products/:productId" element={<ProductDetailsPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route
-          path="/categories/:categoryId"
-          element={<CategoryCardComponent />}
-        />
+        <Route path="/categories/:categoryId" element={<CategoryCardComponent />}/>
         <Route path="/random-dad-jokes" element={<RandomDadJokePage />} />
+
+        {/* all undefined routes */}
         <Route path="*" element={<ErrorPage />} />
+
+        
       </Routes>
       <Footer />
     </div>

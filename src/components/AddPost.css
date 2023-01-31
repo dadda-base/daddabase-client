@@ -2,6 +2,13 @@
     margin: 0 3rem;
 }
 
+.addPostContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
 #addPostTitle {
     font-size: 2vw;
     color: white;
@@ -10,9 +17,3 @@
     text-align: center;
 }
 
-.addPostContainer {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-}

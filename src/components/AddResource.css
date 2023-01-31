@@ -2,17 +2,17 @@
     margin: 0 3rem;
 }
 
+.addResourceContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
 #addResourceTitle {
     font-size: 2vw;
     color: white;
     background-color: skyblue;
     padding: 0 1rem;
     text-align: center;
-}
-
-.addResourceContainer {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
 }

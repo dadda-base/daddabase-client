@@ -1,4 +1,3 @@
-import "../pages/HomePage.css";
 import SectionCarouselComponent from "../components/SectionCarouselComponent";
 import CategoryCardComponent from "../components/CategoryCardComponent";
 import { Container, Row } from "react-bootstrap";
