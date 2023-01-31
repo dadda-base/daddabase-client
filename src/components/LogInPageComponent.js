@@ -31,7 +31,6 @@ function LogInPageComponent(props) {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(email, password)
     const requestBody = { email, password };
  
     axios.post(`${baseURL}/auth/login`, requestBody)
