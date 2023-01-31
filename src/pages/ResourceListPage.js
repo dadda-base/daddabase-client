@@ -11,7 +11,7 @@ const baseURL = process.env.REACT_APP_API_URL;
 function ResourceListPage() {
   const [resources, setResources] = useState([])
   const { isLoggedIn} = useContext(AuthContext);
-
+  console.log("RL"+baseURL);
   const getAllResources = () => {
     axios.get(baseURL + "/api/resources")
       .then((res) => {

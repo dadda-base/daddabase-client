@@ -13,13 +13,11 @@ function PostsPage() {
   const getAllPosts = () => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
+    console.log("PL"+baseURL);
     // Send the token through the request "Authorization" Headers
     axios
-      .get(`${baseURL}/api/posts`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      .get(`${baseURL}/api/posts`)
       .then((response) => {
-        console.log(response.data);
         setPosts(response.data);
       })
       .catch((error) => console.log(error));

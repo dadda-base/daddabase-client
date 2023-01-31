@@ -18,9 +18,7 @@ const ProductListPage = () => {
     const storedToken = localStorage.getItem("authToken");
     // Send the token through the request "Authorization" Headers
     axios
-      .get(`${baseURL}/api/products`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      .get(`${baseURL}/api/products`)
       .then((response) => {
         console.log(response.data);
         setProducts(response.data);
