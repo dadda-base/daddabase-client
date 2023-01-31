@@ -22,7 +22,8 @@ import ProfileEditPage from "./pages/ProfileEditPage";
 import EditResourcePage from "./pages/EditResourcePage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
-import CartPage from "./pages/CartPage"
+import RandomDadJokePage from "./pages/RandomDadJokePage"
+import CartPage from "./pages/CartPage";
 import CategoryCardComponent from "./components/CategoryCardComponent";
 /////////////////////////////////
 
@@ -49,7 +50,6 @@ function App() {
     getUserProfile();
   }, [user]);
 
-  
   const deleteUser = () => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -68,37 +68,35 @@ function App() {
     <div className="App">
       <NavbarComponent profile={profile} />
       <Routes>
-          <Route path={"/"} element={<HomePage />} />
-          <Route path={"/signup"} element={<SignUpPage />} />
-          <Route path={"/login"} element={<LogInPage />} />
-          <Route
-            path={`/profiles/:userId`}
-            element={
-              <ProfilePage
-                profile={profile}
-                callbackToDeleteUser={deleteUser}
-              />
-            }
-          />
-          <Route
-            path={"/profiles/:userId/edit"}
-            element={<ProfileEditPage />}
-          />
-          <Route path={"/resources"} element={<ResourceListPage />} />
-          <Route
-            path={"/resources/:resourceId"}
-            element={<ResourceDetailsPage />}
-          />
-          <Route
-            path={"/resources/edit/:resourceId"}
-            element={<EditResourcePage />}
-          />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route path="/products" element={<ProductListPage />} />
-          <Route path="/products/:productId" element={<ProductDetailsPage />} />
-         <Route path="/cart" element={<CartPage />} />
-         <Route path="/categories/:categoryId" element= {<CategoryCardComponent /> } />
-          <Route path="*" element={<ErrorPage />} />
+        <Route path={"/"} element={<HomePage />} />
+        <Route path={"/signup"} element={<SignUpPage />} />
+        <Route path={"/login"} element={<LogInPage />} />
+        <Route
+          path={`/profiles/:userId`}
+          element={
+            <ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />
+          }
+        />
+        <Route path={"/profiles/:userId/edit"} element={<ProfileEditPage />} />
+        <Route path={"/resources"} element={<ResourceListPage />} />
+        <Route
+          path={"/resources/:resourceId"}
+          element={<ResourceDetailsPage />}
+        />
+        <Route
+          path={"/resources/edit/:resourceId"}
+          element={<EditResourcePage />}
+        />
+        <Route path="/posts" element={<PostsPage />} />
+        <Route path="/products" element={<ProductListPage />} />
+        <Route path="/products/:productId" element={<ProductDetailsPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route
+          path="/categories/:categoryId"
+          element={<CategoryCardComponent />}
+        />
+        <Route path="/random-dad-jokes" element={<RandomDadJokePage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>

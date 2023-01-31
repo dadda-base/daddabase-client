@@ -19,7 +19,7 @@ const SectionCarouselComponent = () => {
           alt="First slide"
         />
         <Carousel.Caption style={{backgroundColor: "gray", opacity: 0.9, textAlign: "center", margin: "0 30vw"}}>
-          <LinkContainer style={cursorPointer} to="/dad-jokes">
+          <LinkContainer style={cursorPointer} to="/random-dad-jokes">
             <h1>Dad Jokes</h1>
           </LinkContainer>
           <p>Stock up on jokes</p>
