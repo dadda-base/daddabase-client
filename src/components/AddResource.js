@@ -16,10 +16,11 @@ function AddResource(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const storedToken = localStorage.getItem("authToken");
 
         const requestBody = { title, description, imageUrl, videoUrl, userId: user?._id };
 
-        axios.post(baseURL + "/api/resources", requestBody)
+        axios.post(baseURL + "/api/resources", requestBody, { headers: { Authorization: `Bearer ${storedToken}` }})
             .then((response) => {
                 setTitle("");
                 setDescription("")

@@ -7,7 +7,6 @@ import axios from "axios";
 ///////Our Components///////////
 ///Components/////
 import NavbarComponent from "./components/NavbarComponent";
-import RoutesWithUserChatComponent from "./components/user/RoutesWithUserChatComponent";
 /////pages///////
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
@@ -25,6 +24,8 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import RandomDadJokePage from "./pages/RandomDadJokePage"
 import CartPage from "./pages/CartPage";
 import CategoryCardComponent from "./components/CategoryCardComponent";
+import IsPrivate from "./components/IsPrivate";
+import IsAnon from "./components/IsAnon";
 /////////////////////////////////
 
 function App() {
@@ -69,23 +70,48 @@ function App() {
       <NavbarComponent profile={profile} />
       <Routes>
         <Route path={"/"} element={<HomePage />} />
-        <Route path={"/signup"} element={<SignUpPage />} />
-        <Route path={"/login"} element={<LogInPage />} />
+        <Route path={"/signup"}
+          element={
+            <IsAnon>
+              <SignUpPage />
+            </IsAnon>
+          } />
+        <Route path={"/login"}
+          element={
+            <IsAnon>
+              <LogInPage />
+            </IsAnon>
+          } />
         <Route
           path={`/profiles/:userId`}
           element={
-            <ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />
+            <IsPrivate>
+              <ProfilePage profile={profile} callbackToDeleteUser={deleteUser} />
+            </IsPrivate>
           }
         />
-        <Route path={"/profiles/:userId/edit"} element={<ProfileEditPage />} />
+        <Route
+          path={"/profiles/:userId/edit"}
+          element={
+            <IsPrivate>
+              <ProfileEditPage />
+            </IsPrivate>
+          } />
         <Route path={"/resources"} element={<ResourceListPage />} />
         <Route
           path={"/resources/:resourceId"}
-          element={<ResourceDetailsPage />}
+          element={
+            <IsPrivate>
+              <ResourceDetailsPage />
+            </IsPrivate>
+          }
         />
         <Route
           path={"/resources/edit/:resourceId"}
-          element={<EditResourcePage />}
+          element={
+            <IsPrivate>
+              <EditResourcePage />
+            </IsPrivate>}
         />
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/products" element={<ProductListPage />} />

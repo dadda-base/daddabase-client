@@ -11,12 +11,11 @@ function PostsPage() {
   const { isLoggedIn} = useContext(AuthContext);
   const baseURL = process.env.REACT_APP_API_URL;
   const getAllPosts = () => {
-    // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
-    console.log("PL"+baseURL);
-    // Send the token through the request "Authorization" Headers
+
     axios
-      .get(`${baseURL}/api/posts`)
+      .get(`${baseURL}/api/posts`, 
+      { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setPosts(response.data);
       })

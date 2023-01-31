@@ -11,9 +11,11 @@ const baseURL = process.env.REACT_APP_API_URL;
 function ResourceListPage() {
   const [resources, setResources] = useState([])
   const { isLoggedIn} = useContext(AuthContext);
-  console.log("RL"+baseURL);
+  const storedToken = localStorage.getItem("authToken");
+ 
   const getAllResources = () => {
-    axios.get(baseURL + "/api/resources")
+    axios.get(baseURL + "/api/resources",
+    { headers: { Authorization: `Bearer ${storedToken}` }} )
       .then((res) => {
         setResources(res.data)
       })

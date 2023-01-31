@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 const baseURL = process.env.REACT_APP_API_URL;
 
 function ResourceDetailsPage() {
+  const storedToken = localStorage.getItem("authToken");
   const [resource, setResource] = useState(null);
 
   const { user } = useContext(AuthContext);
@@ -20,7 +21,8 @@ function ResourceDetailsPage() {
 
   const getResource = () => {
     axios
-      .get(baseURL + "/api/resources/" + resourceId)
+      .get(baseURL + "/api/resources/" + resourceId ,
+      { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         const resource = response.data;
         setResource(resource);
@@ -30,7 +32,8 @@ function ResourceDetailsPage() {
 
   const deleteResource = () => {
     axios
-      .delete(baseURL + "/api/resources/" + resourceId)
+      .delete(baseURL + "/api/resources/" + resourceId,
+      { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(() => {
         navigate("/resources");
       })
