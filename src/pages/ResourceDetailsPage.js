@@ -63,7 +63,7 @@ function ResourceDetailsPage() {
                 <button>All resources</button>
               </Link>
 
-              {resource &&
+              {userId &&
                 userId == resource.user?._id
                 ?
                 <>
