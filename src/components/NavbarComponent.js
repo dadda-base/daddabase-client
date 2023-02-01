@@ -26,7 +26,7 @@ const NavbarComponent = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <h5>Together we can go FATHER!</h5>
+            <span>Together, we can go FATHER!</span>
           </Nav>
           <Nav>
             <LinkContainer to="/posts">
@@ -54,6 +54,13 @@ const NavbarComponent = (props) => {
                     to={`/profiles/${props.profile._id}`}
                   >
                     My Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={Link}
+                    eventKey={`/to-do-list/${props.profile._id}`}
+                    to={`/to-do-list/${props.profile._id}`}
+                  >
+                    To Do's
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   {/*<NavDropdown.Item to>*/}
