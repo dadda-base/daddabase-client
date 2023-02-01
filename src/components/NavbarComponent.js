@@ -29,18 +29,15 @@ const NavbarComponent = (props) => {
           <h5>Together we can go FATHER!</h5>
           </Nav>
           <Nav>
-            <LinkContainer to="/posts">
-            <Nav.Link href="/posts">PostsBase</Nav.Link>
+            <LinkContainer to="/bonus1">
+              <Nav.Link>
+                Bonus
+                <span className="position-absolute top-1 start-10 translate-middle p-2 border bg-danger border-light rounded-circle"></span>
+              </Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/resources">
-            <Nav.Link href="/resources">ResourceBase</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/products">
-            <Nav.Link href="/products">GadgetBase</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="random-dad-jokes">
-            <Nav.Link href="/random-dad-jokes">JokeBase</Nav.Link>
-            </LinkContainer>
+            <Nav.Link href="/posts">Posts</Nav.Link>
+            <Nav.Link href="/resources">Resources</Nav.Link>
+            <Nav.Link href="/products">Products</Nav.Link>
             {isLoggedIn && (
               <>
                 <NavDropdown title={props.profile.name} id="collasible-nav-dropdown">
@@ -52,6 +49,9 @@ const NavbarComponent = (props) => {
                     My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
+                  {/*<NavDropdown.Item to>*/}
+                  <Button onClick={logOutUser}>Log Out</Button>
+                  {/* <NavDropdown.Item>*/}
                     <Button onClick={logOutUser}>Log Out</Button>
                 </NavDropdown>
               </>

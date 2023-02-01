@@ -27,10 +27,10 @@ function SignUpPage() {
   const handleName = (e) => setName(e.target.value);
 
 
- const onChange = () => {
+  const onChange = () => {
     const password = document.querySelector("input[name=password]")
-   const confirmPassword = document.querySelector("input[name=confirmPassword]")
-   console.log(confirmPassword, password)
+    const confirmPassword = document.querySelector("input[name=confirmPassword]")
+    console.log(confirmPassword, password)
     if (confirmPassword.value === password.value) {
       confirmPassword.setCustomValidity("")
     }
@@ -39,31 +39,32 @@ function SignUpPage() {
     }
   }
 
-  const handleSignUpSubmit = (event) => {
-  const form = event.currentTarget;
-   if (form.checkValidity() === false) {
-     
-      event.stopPropagation();
-     
-    }
-    event.preventDefault();
-    const requestBody = { email, password, name};
+  const handleSignupSubmit = (e) => {
+    // const form = event.currentTarget;
+    //  if (form.checkValidity() === false) {
+
+    //     event.stopPropagation();
+
+    //   }
+    e.preventDefault();
+    const requestBody = { email, password, name };
+
     axios.post(`${baseURL}/auth/signup`, requestBody)
       .then((response) => {
-      navigate('/logIn');
-    })
-    .catch((error) => {
-      const errorDescription = error.response.data.message;
-      setErrorMessage(errorDescription);
-    })
-};
- 
+        navigate('/logIn');
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      })
+  };
+
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
         <Col md={8}>
           <h1>Sign Up</h1>
-          <Form noValidate validated={validated} onSubmit={handleSignUpSubmit}>
+          <Form onSubmit={handleSignupSubmit}>
             <Form.Group controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -71,36 +72,33 @@ function SignUpPage() {
                 type="text"
                 placeholder="Name"
                 name="name"
+                value={name}
                 onChange={handleName}
               />
-              <Form.Control.Feedback type="invalid">
-                Enter a name
-              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>email</Form.Label>
               <InputGroup hasValidation>
                 <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                 <Form.Control
+                  required
                   type="email"
                   placeholder="email"
-                  aria-describedby="inputGroupPrepend"
-                  required
                   name="email"
+                  value={email}
                   onChange={handleEmail}
                 />
-                <Form.Control.Feedback type="invalid">
-                  enter a valid email address
-                </Form.Control.Feedback>
               </InputGroup>
+              
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                required
                 type="password"
                 placeholder="choose a password"
-                required
                 name="password"
+                value={password}
                 minlenght={6}
                 onChange={handlePassword}
               />
@@ -109,12 +107,9 @@ function SignUpPage() {
                 password must have at least 6 characters long and contain 1
                 uppercase and one lowercase
               </Form.Text>
-              <Form.Control.Feedback type="invalid">
-                password must have at least 6 characters long and contain 1
-                uppercase and one lowercase{" "}
-              </Form.Control.Feedback>
+             
             </Form.Group>
-          <Form.Group controlId="formBasicPasswordRepeat">
+            <Form.Group controlId="formBasicPasswordRepeat">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
@@ -127,7 +122,7 @@ function SignUpPage() {
               <Form.Control.Feedback type="invalid">
                 passwords don't match
               </Form.Control.Feedback>
-            </Form.Group> 
+            </Form.Group>
             <Row className="pb-2">
               <Col>
                 Do you have an account already?
@@ -151,6 +146,7 @@ function SignUpPage() {
               eg. User created
             </Alert> */}
           </Form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </Col>
       </Row>
     </Container>

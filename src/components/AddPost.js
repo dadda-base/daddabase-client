@@ -13,15 +13,14 @@ function AddPost(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const storedToken = localStorage.getItem("authToken");
+    
     const requestBody = { title, description, userId: user?._id };
 
-    axios
-      .post(`${baseURL}/api/posts`, requestBody)
+    axios.post(`${baseURL}/api/posts`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setTitle("");
-        setDescription("");
-
+        setDescription("")
         props.refreshPosts();
       })
       .catch((err) => console.log(err));

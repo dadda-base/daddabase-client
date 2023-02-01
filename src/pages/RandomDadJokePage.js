@@ -24,7 +24,7 @@ function RandomDadJokePage() {
 
   useEffect(() => {
     getDadJoke();
-  });
+  }, [<RandomDadJokePage />]);
 
   return (
     <Container>

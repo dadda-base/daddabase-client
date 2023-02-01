@@ -13,13 +13,15 @@ function EditResourcePage() {
     const [description, setDescription] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [videoUrl, setVideoUrl] = useState("")
+    const storedToken = localStorage.getItem("authToken");
 
     const { resourceId } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         axios
-            .get(baseURL + "/api/resources/" + resourceId)
+            .get(baseURL + "/api/resources/" + resourceId,
+            { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((response) => {
                 const resource = response.data;
                 setTitle(resource.title);
@@ -37,7 +39,8 @@ function EditResourcePage() {
         const requestBody = { title, description, imageUrl, videoUrl };
 
         axios
-            .put(baseURL + "/api/resources/" + resourceId, requestBody)
+            .put(baseURL + "/api/resources/" + resourceId, requestBody,
+            { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((response) => {
                 navigate("/resources/" + resourceId)
             });

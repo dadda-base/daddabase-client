@@ -15,6 +15,7 @@ function AddResource(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+        const storedToken = localStorage.getItem("authToken");
 
     const requestBody = {
       title,
@@ -24,17 +25,16 @@ function AddResource(props) {
       userId: user?._id,
     };
 
-    axios
-      .post(baseURL + "/api/resources", requestBody)
-      .then(() => {
-        setTitle("");
-        setDescription("");
-        setImageUrl("");
-        setVideoUrl("");
-        props.refreshResources();
-      })
-      .catch((err) => console.log(err));
-  };
+        axios.post(baseURL + "/api/resources", requestBody, { headers: { Authorization: `Bearer ${storedToken}` }})
+            .then((response) => {
+                setTitle("");
+                setDescription("")
+                setImageUrl("")
+                setVideoUrl("")
+                props.refreshResources();
+            })
+            .catch((err) => console.log(err))
+    }
 
   return (
     <Form onSubmit={handleSubmit} className="addResource">
