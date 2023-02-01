@@ -35,6 +35,7 @@ const NavbarComponent = (props) => {
                 <span className="position-absolute top-1 start-10 translate-middle p-2 border bg-danger border-light rounded-circle"></span>
               </Nav.Link>
             </LinkContainer>
+            
             <Nav.Link href="/posts">Posts</Nav.Link>
             <Nav.Link href="/resources">Resources</Nav.Link>
             <Nav.Link href="/products">Products</Nav.Link>
