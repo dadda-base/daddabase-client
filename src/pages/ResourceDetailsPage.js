@@ -63,7 +63,7 @@ function ResourceDetailsPage() {
 
 
               <Link to="/resources">
-                <button>All resources</button>
+                <Button>All resources</Button>
               </Link>
 
               {userId &&
@@ -71,10 +71,10 @@ function ResourceDetailsPage() {
                 ?
                 <>
                   <Link to={`/resources/edit/${resourceId}`}>
-                    <button>Edit Resource</button>
+                    <Button >Edit resource</Button>
                   </Link>
 
-                  <button id="deleteButton" onClick={deleteResource}>Delete</button>
+                  <Button id="deleteButton" onClick={deleteResource}>Delete</Button>
                 </>
                 : <></>
               }
