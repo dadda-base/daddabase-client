@@ -3,22 +3,23 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import ReactPlayer from "react-player";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-
-
 import {
+  MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardFooter,
   MDBCardImage,
   MDBCol,
   MDBContainer,
   MDBIcon,
   MDBRow,
-  MDBTypography,
+  MDBTextArea,
 } from "mdb-react-ui-kit";
+import { LinkContainer } from "react-router-bootstrap";
+import { Nav } from "react-bootstrap";
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -28,6 +29,7 @@ function PostDetailsPage() {
 
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState([])
+  const [comment, setComment] = useState("")
   const userId = user?._id
 
   const { postId } = useParams();
@@ -43,7 +45,7 @@ function PostDetailsPage() {
       })
       .catch((error) => console.log(error));
   };
-
+  console.log(post?.user._id);
   const getUser = () => {
     axios
       .get(baseURL + "/api/users/" + user._id, {
@@ -55,16 +57,6 @@ function PostDetailsPage() {
       .catch((error) => console.log(error));
   }
 
-  const deletePost = () => {
-    axios
-      .delete(baseURL + "/api/posts/" + postId,
-        { headers: { Authorization: `Bearer ${storedToken}` } })
-      .then(() => {
-        navigate("/posts");
-      })
-      .catch((err) => console.log(err));
-  };
-
   useEffect(() => {
     getUser()
   }, [])
@@ -73,101 +65,90 @@ function PostDetailsPage() {
     getPost()
   }, [])
 
-  console.log('userId:' + profile.profileImage);
   return (
-    <section className="gradient-custom vh-100">
-    {post ? (
-      <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
-        <MDBRow className="justify-content-center">
-          <MDBCol md="12" lg="10" xl="8">
-            <MDBCard>
-              <MDBCardBody className="p-4">
-                <MDBTypography tag="h4" className="text-center mb-4 pb-2">
-                  {post.title}
-                </MDBTypography>
-
-                <MDBRow>
-                  <MDBCol>
-                    <div className="d-flex flex-start">
-                      <MDBCardImage
-                        className="rounded-circle shadow-1-strong me-3"
-                        src={profile.profileImage}
-                        alt="avatar"
-                        width="65"
-                        height="65"
-                      />
-
-                      <div className="flex-grow-1 flex-shrink-1">
-                        <div>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <p className="mb-1">
-                              {profile.username}{" "}
-                              {/* <span className="small">- 2 hours ago</span> */}
-                            </p>
-                            <a href="#!">
-                              <MDBIcon fas icon="reply fa-xs" />
-                              <span className="small"> reply</span>
-                            </a>
-                          </div>
-                          <p className="small mb-0">
-                            {post.description}
-                          </p>
-                        </div>
-
-
-
-
-                      </div>
+    <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+      {post &&
+        <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+          <MDBRow className="justify-content-center">
+            <MDBCol md="12" lg="10" xl="8">
+              <MDBCard>
+                <MDBCardBody>
+                  <div className="d-flex flex-start align-items-center">
+                    <MDBCardImage
+                      className="rounded-circle shadow-1-strong me-3"
+                      src={post.user.profileImage}
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 className="fw-bold text-primary mb-1">{post.user.username}</h6>
+                      <p className="text-muted small mb-0">
+                        {/* Shared publicly - Jan 2020 */}
+                      </p>
                     </div>
+                  </div>
+                  <h3 className="mt-3 mb-4 pb-2">{post.title}</h3>
+                  <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
+                    {post.description}
+                  </p>
 
+                  {/* <div className="small d-flex justify-content-start">
+                  <a href="#!" className="d-flex align-items-center me-3">
+                    <MDBIcon far icon="thumbs-up me-2" />
+                    <p className="mb-0">Like</p>
+                  </a>
+                  <a href="#!" className="d-flex align-items-center me-3">
+                    <MDBIcon far icon="comment-dots me-2" />
+                    <p className="mb-0">Comment</p>
+                  </a>
+                  <a href="#!" className="d-flex align-items-center me-3">
+                    <MDBIcon fas icon="share me-2" />
+                    <p className="mb-0">Share</p>
+                  </a>
+                </div> */}
+                </MDBCardBody>
 
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      )
-    : <h1>loading........</h1>
-  }
+                <MDBCardFooter
+                  className="py-3 border-0"
+                  style={{ backgroundColor: "#f8f9fa" }}
+                >
+                  <div className="d-flex flex-start w-100">
+                    <MDBCardImage
+                      className="rounded-circle shadow-1-strong me-3"
+                      src={profile.profileImage}
+                      alt="avatar"
+                      width="40"
+                      height="40"
+                    />
+                    <MDBTextArea 
+                      type="text"
+                      name="comment"
+                      value={comment}
+                      placeholder="leave your comment"
+                      label='Message' 
+                      id='comment' 
+                      rows={4} 
+                      style={{ backgroundColor: '#fff' }} 
+                      wrapperClass="w-100" />
+                  </div>
+                  <div className="float-end mt-2 pt-1">
+                    <MDBBtn size="sm" className="me-1">Post comment</MDBBtn>
+
+                    <MDBBtn outline size="sm">
+                      <LinkContainer to="/posts">
+                        <Nav.Link>Cancel</Nav.Link>
+                      </LinkContainer>
+                    </MDBBtn>
+                  </div>
+                </MDBCardFooter>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      }
     </section>
-  )
+  );
 }
-    
-    {/* <div className="PostDetailsPage">
-      <Card style={{ width: '80vw' }} className="PostDetailsCard">
-        {post ? (
-          <>
-            <Card.Body className="PostDetails">
-              <Card.Title><h1>Title: {post.title}</h1></Card.Title>
-              <Card.Text><p>{post.description}</p></Card.Text>
-
-
-              <Link to="/posts">
-                <Button variant="primary">All posts</Button>
-              </Link>
-
-              {userId &&
-                userId == post.user?._id
-                ?
-                <>
-                  <Link to={`/posts/edit/${postId}`}>
-                    <Button variant="success">Edit post</Button>
-                  </Link>
-
-                  <Button variant="danger" id="deleteButton" onClick={deletePost}>Delete</Button>
-                </>
-                : <></>
-              }
-            </Card.Body>
-          </>
-        )
-          : <h1>loading........</h1>
-        }
-      </Card>
-    </div> */}
-    
-
 
 export default PostDetailsPage;

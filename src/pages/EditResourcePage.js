@@ -118,9 +118,14 @@ function EditResourcePage() {
                 </Form.Group>
 
 
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                {isUploadingImage
+                    ? <Button variant="primary" type="submit" disabled>
+                        Uploading...
+                    </Button>
+                    : <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                }
             </Container>
         </Form>
         
