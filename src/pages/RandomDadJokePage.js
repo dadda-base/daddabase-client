@@ -24,7 +24,7 @@ function RandomDadJokePage() {
 
   useEffect(() => {
     getDadJoke();
-  }, [<RandomDadJokePage />]);
+  }, []);
 
   return (
     <Container>
@@ -32,10 +32,8 @@ function RandomDadJokePage() {
         <Col md={9}>
           <h5>{joke}</h5>
         </Col>
-        <Col md={3}>
-          <LinkContainer to="/random-dad-jokes">
-            <Button className="mt-5">Want more?</Button>
-          </LinkContainer>
+        <Col md={3}>          
+            <Button className="mt-5" onClick={getDadJoke}>Want more?</Button>          
         </Col>
       </Row>
     </Container>
