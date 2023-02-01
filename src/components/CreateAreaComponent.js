@@ -2,7 +2,7 @@ import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import "./CreateAreaComponent.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 const CreateAreaComponent = (props) => {
   const [note, setNote] = useState({
     title: "",
@@ -31,10 +31,10 @@ const CreateAreaComponent = (props) => {
   }
 
   return (
-    <Container>
+    <Container className="to-do-list">
       <Row>
         <Col>
-          <form className="create-note">
+          <Card className="create-note" style={{ maxHeight: "200px" }}>
             <input
               type="text"
               name="title"
@@ -42,10 +42,8 @@ const CreateAreaComponent = (props) => {
               onChange={handleChange}
               value={note.title}
             />
-            <hr />
             <textarea
               name="content"
-              rows="3"
               placeholder="make a note"
               onChange={handleChange}
               value={note.content}
@@ -53,7 +51,7 @@ const CreateAreaComponent = (props) => {
             <Fab onClick={submitNote}>
               <AddIcon />
             </Fab>
-          </form>
+          </Card>
         </Col>
       </Row>
     </Container>

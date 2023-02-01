@@ -17,7 +17,7 @@ function ResourceListPage() {
     axios.get(baseURL + "/api/resources",
     { headers: { Authorization: `Bearer ${storedToken}` }} )
       .then((res) => {
-        setResources(res.data)
+        setResources(res.data.reverse())
       })
       .catch((error) => console.log(error));
   }

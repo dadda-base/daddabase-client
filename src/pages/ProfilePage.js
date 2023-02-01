@@ -50,7 +50,7 @@ function ProfilePage(props) {
               <LinkContainer to={`/profiles/${profile._id}/edit`}>
                 <Button variant="primary">Edit Profile</Button>
               </LinkContainer>
-              <Button variant="danger" onClick={props.callbackToDeleteUser}>Delete Profile</Button>
+              <Button className="ms-2" variant="danger" onClick={props.callbackToDeleteUser}>Delete Profile</Button>
             </Card.Body>
           </>
         )}

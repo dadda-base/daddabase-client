@@ -51,10 +51,10 @@ function ResourceDetailsPage() {
         {resource ? (
           <>
             {resource.imageUrl ?
-              <Card.Img variant="top" src={resource.imageUrl} alt="" /> : <></>
+              <Card.Img variant="top" style={{maxHeight: "10vh", maxWidth: "10vw"}} src={resource.imageUrl} alt="" /> : <></>
             }
             {resource.videoUrl ?
-              <ReactPlayer className="resourceVideo" url={resource.videoUrl} playing={false} controls={true} width="75vw" height="80vh"/>
+              <ReactPlayer className="resourceVideo" url={resource.videoUrl} playing={false} controls={true} width="60vw" height="50vh"/>
               : <></>
             }
             <Card.Body className="ResourceDetails">
@@ -71,10 +71,10 @@ function ResourceDetailsPage() {
                 ?
                 <>
                   <Link to={`/resources/edit/${resourceId}`}>
-                    <Button variant="success">Edit resource</Button>
+                    <Button className="ms-3" variant="success">Edit resource</Button>
                   </Link>
 
-                  <Button variant="danger" id="deleteButton" onClick={deleteResource}>Delete</Button>
+                  <Button className="ms-3" variant="danger" id="deleteButton" onClick={deleteResource}>Delete</Button>
                 </>
                 : <></>
               }

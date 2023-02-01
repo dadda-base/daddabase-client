@@ -16,7 +16,7 @@ function PostsPage() {
       .get(`${baseURL}/api/posts`, 
       { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
-        setPosts(response.data);
+        setPosts(response.data.reverse());
       })
       .catch((error) => console.log(error));
   };
