@@ -1,5 +1,4 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import {Button,Card} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const CategoryCardComponent = (props) => {

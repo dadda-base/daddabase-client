@@ -1,11 +1,6 @@
 import {
-  Badge,
   Button,
   Container,
-  Dropdown,
-  DropdownButton,
-  Form,
-  InputGroup,
   Nav,
   Navbar,
   NavDropdown,
@@ -31,17 +26,7 @@ const NavbarComponent = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <InputGroup>
-              <DropdownButton id="dropdown-basic-button" title="Bonus">
-                <Dropdown.Item>Bonus 1</Dropdown.Item>
-                <Dropdown.Item>Bonus 2</Dropdown.Item>
-                <Dropdown.Item>Bonus 3</Dropdown.Item>
-              </DropdownButton>
-              <Form.Control type="text" placeholder="Bonus" />
-              <Button variant="warning">
-                <i className="bi bi-search"></i>
-              </Button>
-            </InputGroup>
+          <h5>Together we can go FATHER!</h5>
           </Nav>
           <Nav>
             <LinkContainer to="/bonus1">
@@ -50,29 +35,15 @@ const NavbarComponent = (props) => {
                 <span className="position-absolute top-1 start-10 translate-middle p-2 border bg-danger border-light rounded-circle"></span>
               </Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/posts">
-              <Nav.Link>
-                Posts
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/resources">
-              <Nav.Link>
-                Resources
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/products">
-              <Nav.Link>
-                Products
-              </Nav.Link>
-            </LinkContainer>
-
-
+            <Nav.Link href="/posts">Posts</Nav.Link>
+            <Nav.Link href="/resources">Resources</Nav.Link>
+            <Nav.Link href="/products">Products</Nav.Link>
             {isLoggedIn && (
               <>
                 <NavDropdown title={props.profile.name} id="collasible-nav-dropdown">
                   <NavDropdown.Item
                     as={Link}
-                    eventKey={`/profiless/${props.profile._id}`}
+                    eventKey={`/profiles/${props.profile._id}`}
                     to={`/profiles/${props.profile._id}`}
                   >
                     My Profile
@@ -81,6 +52,7 @@ const NavbarComponent = (props) => {
                   {/*<NavDropdown.Item to>*/}
                   <Button onClick={logOutUser}>Log Out</Button>
                   {/* <NavDropdown.Item>*/}
+                    <Button onClick={logOutUser}>Log Out</Button>
                 </NavDropdown>
               </>
             )}
@@ -95,15 +67,6 @@ const NavbarComponent = (props) => {
               </>
             )}
 
-            <LinkContainer to="/cart">
-              <Nav.Link>
-                <Badge pill bg="danger">
-                  2
-                </Badge>
-                <i className="bi bi-cart4"></i>
-                <span className="ms-1">Bonus</span>
-              </Nav.Link>
-            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Container>

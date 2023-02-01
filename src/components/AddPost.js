@@ -2,16 +2,14 @@ import "../components/AddPost.css";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { Container } from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
+
 const baseURL = process.env.REACT_APP_API_URL;
 
 function AddPost(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { storedToken, authenticateUser, user } = useContext(AuthContext);
-
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,8 +23,8 @@ function AddPost(props) {
         setDescription("")
         props.refreshPosts();
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Form onSubmit={handleSubmit} className="addPost">
@@ -39,7 +37,8 @@ function AddPost(props) {
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter title" />
+            placeholder="Enter title"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="ControlTextarea1">
@@ -51,7 +50,8 @@ function AddPost(props) {
             name="description"
             value={description}
             placeholder="What's the resource about?"
-            onChange={(e) => setDescription(e.target.value)} />
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </Form.Group>
 
         <Button variant="primary" type="submit">
