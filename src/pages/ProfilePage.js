@@ -65,7 +65,7 @@ function ProfilePage(props) {
           {profile.resources &&
             profile.resources.map((resource) => {
               return (
-                <ListGroup.Item as="li" className="profileListBar">
+                <ListGroup.Item as="li" className="profileListBar" key={resource._id}>
                   <Link to={`/resources/${resource._id}`} className="profileList">
                     <h5>Title: {resource.title}</h5>
                   </Link>
@@ -83,8 +83,7 @@ function ProfilePage(props) {
           {profile.posts &&
             profile.posts.map((post) => {
               return (
-                <ListGroup.Item as="li">
-
+                <ListGroup.Item as="li" key={post._id}>
                   <h5>Title: {post.title}</h5>
                   <h5>Description: {post.description}</h5>
                 </ListGroup.Item>

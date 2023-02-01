@@ -29,12 +29,6 @@ const NavbarComponent = (props) => {
             <h5>Together we can go FATHER!</h5>
           </Nav>
           <Nav>
-            <LinkContainer to="/bonus1">
-              <Nav.Link>
-                Bonus
-                <span className="position-absolute top-1 start-10 translate-middle p-2 border bg-danger border-light rounded-circle"></span>
-              </Nav.Link>
-            </LinkContainer>
             <LinkContainer to="/posts">
               <Nav.Link>
                 Posts

@@ -2,6 +2,11 @@
     margin: 0 3rem;
 }
 
+label {
+    color: rgb(39, 99, 240);
+    
+}
+
 .addResourceContainer {
     display: flex;
     flex-direction: column;
@@ -15,4 +20,8 @@
     background-color: skyblue;
     padding: 0 1rem;
     text-align: center;
+}
+
+#addImage {
+    width: 15vw;
 }
