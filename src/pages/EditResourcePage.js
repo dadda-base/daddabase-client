@@ -30,7 +30,6 @@ function EditResourcePage() {
                 setVideoUrl(resource.videoUrl);
             })
             .catch((error) => console.log(error));
-        //project id change then update
     }, [resourceId]);
 
     const handleSubmit = (e) => {
@@ -49,7 +48,7 @@ function EditResourcePage() {
 
     return (
         <Form onSubmit={handleSubmit} className="editResource">
-            <h3 id="editResourceTitle">Edit the Resource</h3>
+            <h3>Edit the Resource</h3>
             <Container className="editResourceContainer">
                 <Form.Group className="mb-3" controlId="ControlInput1">
                     <Form.Label>Title:</Form.Label>
