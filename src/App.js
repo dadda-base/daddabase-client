@@ -24,6 +24,7 @@ import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import ResourceListPage from "./pages/ResourceListPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import PostDetailsPage from "./pages/postDetailsPage";
 /////////////////////////////////
 
 function App() {
@@ -113,6 +114,13 @@ function App() {
             </IsPrivate>}
         />
         <Route path="/posts" element={<PostsPage />} />
+        <Route
+          path={"/posts/:postId"}
+          element={
+            <IsPrivate>
+              <PostDetailsPage />
+            </IsPrivate>}
+        />
         <Route path="/products" element={<ProductListPage />} />
         <Route path="/categories/:categoryId" element={<CategoryCardComponent />}/>
         <Route path="/random-dad-jokes" element={<RandomDadJokePage />} />

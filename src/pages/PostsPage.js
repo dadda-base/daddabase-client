@@ -1,7 +1,8 @@
 import "../pages/PostsPage.css";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Card, Container, Row } from "react-bootstrap";
+import { Button, Card, Container, Row } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import AddPost from "../components/AddPost";
 import { AuthContext } from "../context/auth.context";
 
@@ -36,6 +37,9 @@ function PostsPage() {
               <Card.Body className="postCard">
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
+                <LinkContainer to={`/posts/${post._id}`}>
+                  <Button variant="primary">Details</Button>
+                </LinkContainer>
               </Card.Body>
             </Card>
           ))}
