@@ -44,6 +44,7 @@ const NavbarComponent = (props) => {
                 Products
               </Nav.Link>
             </LinkContainer>
+            
             {isLoggedIn && (
               <>
                 <NavDropdown title={props.profile.name} id="collasible-nav-dropdown">
