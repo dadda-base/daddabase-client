@@ -12,20 +12,21 @@ const baseURL = process.env.REACT_APP_API_URL;
 function ProfilePage(props) {
   const { isLoggedIn, user } = useContext(AuthContext);
   const { storedToken, authenticateUser } = useContext(AuthContext);
-  const [ profile, setProfile ] = useState([])
-  
+  const [profile, setProfile] = useState([])
+
 
   const getProfile = () => {
-    axios.get(baseURL + "/api/users/" + user._id, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
+    axios
+      .get(baseURL + "/api/users/" + user._id, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((res) => {
         setProfile(res.data)
       })
       .catch((error) => console.log(error));
   }
 
-  
+
 
   useEffect(() => {
     getProfile();
