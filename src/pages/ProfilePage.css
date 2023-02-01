@@ -7,6 +7,11 @@
 
 .profileCard {
     margin-top: 0;
+    text-align: center;
+}
+
+.profileCard button{
+    margin: 1rem auto;
 }
 
 .listContainer {

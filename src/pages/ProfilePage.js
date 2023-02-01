@@ -49,7 +49,7 @@ function ProfilePage(props) {
 
               <LinkContainer to={`/profiles/${profile._id}/edit`}>
                 <Button variant="primary">Edit Profile</Button>
-              </LinkContainer>
+              </LinkContainer> <br />
               <Button variant="danger" onClick={props.callbackToDeleteUser}>Delete Profile</Button>
             </Card.Body>
           </>

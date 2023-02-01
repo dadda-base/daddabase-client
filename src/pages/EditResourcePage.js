@@ -13,10 +13,38 @@ function EditResourcePage() {
     const [description, setDescription] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [videoUrl, setVideoUrl] = useState("")
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
     const storedToken = localStorage.getItem("authToken");
 
     const { resourceId } = useParams();
     const navigate = useNavigate();
+
+    const api = axios.create({
+        baseURL: `${baseURL}/api`
+    });
+
+    const uploadImage = (file) => {
+        return api.post("/upload", file)
+            .then(res => res.data)
+            .catch((err) => {
+                throw err;
+            });
+    };
+
+    const handleFileUpload = (e) => {
+        const uploadData = new FormData();
+        uploadData.append("imageUrl", e.target.files[0]);
+        setIsUploadingImage(true);
+
+        uploadImage(uploadData)
+            .then(response => {
+                setImageUrl(response.secure_url);
+            })
+            .catch(err => console.log("Error while uploading the file: ", err))
+            .finally(() => {
+                setIsUploadingImage(false);
+            });
+    };
 
     useEffect(() => {
         axios
@@ -73,17 +101,14 @@ function EditResourcePage() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="ControlInput2">
-                    <Form.Label>URL of image:</Form.Label>
-                    <Form.Control
-                        type="url"
-                        name="imageUrl"
-                        value={imageUrl}
-                        placeholder="url of image"
-                        onChange={(e) => setImageUrl(e.target.value)} />
+                    <Form.Label>Image: <br />(only support .jpg, .jpeg and .png)</Form.Label>
+                    <Form.Control id="addImage"
+                        type="file"
+                        onChange={(e) => handleFileUpload(e)} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="ControlInput3">
-                    <Form.Label>URL of video:</Form.Label>
+                    <Form.Label>Video:</Form.Label>
                     <Form.Control
                         type="url"
                         name="videoUrl"
