@@ -1,0 +1,15 @@
+.topic {
+    background-color: lightblue;
+    
+}
+
+.commentContainer {
+   display: flex;
+   flex-direction: column;
+   height: 10vh;
+}
+
+.commentUser {
+    display: flex;
+    align-items: center;
+}
