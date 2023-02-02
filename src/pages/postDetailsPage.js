@@ -49,8 +49,11 @@ function PostDetailsPage() {
     getPost()
   }, [postId])
 
-  const replyTime = dayjs(Date()).format('YYYY/MM/DD');
-  console.log(replyTime);
+  const replyTime = dayjs(Date()).format('YYYY/MM/DD HH:mm');
+
+  const renderTime = (time) => {
+    return dayjs(time).format('YYYY/MM/DD HH:mm')
+  }
 
   const getUser = () => {
     axios
@@ -117,7 +120,7 @@ function PostDetailsPage() {
                     <div>
                       <h4 className="fw-bold text-primary mb-1">{post.user.username}</h4>
                       <p className="text-muted small mb-0">
-                        {/* Shared publicly - Jan 2020 */}
+                        {renderTime(post.createTime)}
                       </p>
                     </div>
                   </div>
@@ -130,54 +133,56 @@ function PostDetailsPage() {
 
                 {post.comment
                   ?
-                  post.comment.map((e) =>                    
+                  post.comment.map((e) =>
                     <MDBCardBody key={e._id}>
                       <hr />
                       {post?.user.username == e?.username
                         ?
                         <Container className="authorContainer">
-                        <div className="commentUser">
-                          <MDBCardImage
-                            className="rounded-circle shadow-1-strong me-3"
-                            src={e.profileImage}
-                            alt="avatar"
-                            width="40"
-                            height="40"
-                          />
+                          <div className="commentUser">
+                            <MDBCardImage
+                              className="rounded-circle shadow-1-strong me-3"
+                              src={e.profileImage}
+                              alt="avatar"
+                              width="40"
+                              height="40"
+                            />
+                            <div>
+                              <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
+                              <p className="text-muted small mb-0">
+                                {renderTime(e.replyTime)}
+                              </p>
+                            </div>
+                          </div>
 
-                          <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
-                          <p className="text-muted small mb-0">
-                            {/* Shared publicly - Jan 2020 */}
+                          <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
+                            {e.content}
                           </p>
-                        </div>
-
-                        <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
-                          {e.content}
-                        </p>
-                      </Container>
-                        : 
+                        </Container>
+                        :
                         <Container className="commentContainer">
-                        <div className="commentUser">
-                          <MDBCardImage
-                            className="rounded-circle shadow-1-strong me-3"
-                            src={e.profileImage}
-                            alt="avatar"
-                            width="40"
-                            height="40"
-                          />
+                          <div className="commentUser">
+                            <MDBCardImage
+                              className="rounded-circle shadow-1-strong me-3"
+                              src={e.profileImage}
+                              alt="avatar"
+                              width="40"
+                              height="40"
+                            />
+                            <div>
+                              <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
+                              <p className="text-muted small mb-0">
+                              {renderTime(e.replyTime)}
+                              </p>
+                            </div>
+                          </div>
 
-                          <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
-                          <p className="text-muted small mb-0">
-                            {/* Shared publicly - Jan 2020 */}
+                          <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
+                            {e.content}
                           </p>
-                        </div>
-
-                        <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
-                          {e.content}
-                        </p>
-                      </Container>
+                        </Container>
                       }
-                      
+
                     </MDBCardBody>
                   )
                   : <></>

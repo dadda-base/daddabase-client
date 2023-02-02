@@ -3,8 +3,11 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import { Button, Form, Container } from "react-bootstrap";
+const dayjs = require('dayjs');
 
 const baseURL = process.env.REACT_APP_API_URL;
+
+const createTime = dayjs(Date()).format('YYYY/MM/DD HH:mm');
 
 function AddPost(props) {
   const [title, setTitle] = useState("");
@@ -15,7 +18,7 @@ function AddPost(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     
-    const requestBody = { title, description, userId: user?._id };
+    const requestBody = { title, description, userId: user?._id, createTime};
 
     axios.post(`${baseURL}/api/posts`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
