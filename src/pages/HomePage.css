@@ -7,18 +7,53 @@
     background-color: antiquewhite;
 }
 
-.babyMessage h1, p, span {
+#msgTitle, #msgP, span {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
+.babyMessage span {
+    color: rgb(244, 106, 9);
+    font-size: 3vw;
+}
+
 .babyMessage img {
-    width: 40vw;
+    width: 28vw;
+    margin: 1.5rem;
 }
 
 .babyMessage h1 {
-    font-size: 3vw;
+    font-size: 2.5vw;
 }
 
 .babyMessage p {
     font-size: 2vw;
+}
+
+.anotherHomepage {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1rem;
+   
+}
+
+.blueCard a, .yellowCard a{
+    text-align: center;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.745);
+}
+
+.blueCard a:hover, .yellowCard a:hover {
+    font-size: larger;
+    color: rgb(244, 106, 9);
+}
+
+.blueCard {
+    background-color: lightblue;    
+}
+
+
+.yellowCard {
+    background-color: lightyellow;
+    
 }

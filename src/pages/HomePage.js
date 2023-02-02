@@ -1,11 +1,12 @@
 import SectionCarouselComponent from "../components/SectionCarouselComponent";
 import CategoryCardComponent from "../components/CategoryCardComponent";
-import { Container, Row } from "react-bootstrap";
+import { Button, Card, Container, Row } from "react-bootstrap";
 import axios from 'axios';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import dayjs from 'dayjs';
 import "../pages/HomePage.css"
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const [categories, setCategories] = useState([]);
@@ -230,11 +231,55 @@ function HomePage() {
       {remainDay > 0
         ?
         <div className="babyMessage">
-          <h1>Congratulations! Your will see your baby after <span>{remainDay}</span> day(s)!</h1>
+          <h1 id="msgTitle">Congratulations! Your will see your baby after <span>{remainDay}</span> day(s)!</h1>
           <img src={url} />
-          <p>{text}</p>
+          <p id="msgP">{text}</p>
         </div>
-        : <></>
+        : <Container className="anotherHomepage">
+          <Card style={{ width: '15rem' }}>
+            <Card.Body className="blueCard">
+              <Link to={`/posts`}>
+                <Card.Title>Posts</Card.Title>
+                <Card.Text>
+                  Do you have questions about parenting? See what others have to say!
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+
+          <Card style={{ width: '15rem' }}>
+            <Card.Body className="yellowCard">
+              <Link to={`/resources`}>
+                <Card.Title>Resources</Card.Title>
+                <Card.Text>
+                  Here you can find lots of resources. You can get help, advice, services and more. Also, you can share.
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+
+          <Card style={{ width: '15rem' }}>
+            <Card.Body className="blueCard">
+              <Link to={`/random-dad-jokes`}>
+                <Card.Title>Dad Jokes</Card.Title>
+                <Card.Text>
+                  Feel stressful? Let's relax by the dad jokes!
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+
+          <Card style={{ width: '15rem' }}>
+            <Card.Body className="yellowCard">
+              <Link to={`/signup`}>
+                <Card.Title>My Profile</Card.Title>
+                <Card.Text>
+                  Lots of functions on user profile. Not a member yet? sign up now!
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Container>
       }
 
     </div>
