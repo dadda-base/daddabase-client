@@ -3,11 +3,18 @@
     
 }
 
-.commentContainer {
+.commentContainer, .authorContainer {
    display: flex;
-   flex-direction: column;
-   align-items: flex-end;
+   flex-direction: column;   
    height: 10vh;
+}
+
+.commentContainer{
+    align-items: flex-end;
+}
+
+.authorContainer {
+    align-items: flex-start;
 }
 
 .commentUser {
@@ -18,4 +25,8 @@
 #deletePostBtn {
     position: absolute;
     left: 1vw;
+}
+
+.postFooter {
+    margin-top: 10px;
 }

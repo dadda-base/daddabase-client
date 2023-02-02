@@ -23,11 +23,11 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 function PostDetailsPage() {
   const storedToken = localStorage.getItem("authToken");
-  const [post, setPost] = useState(null);
-
   const { user } = useContext(AuthContext);
-  const [profile, setProfile] = useState([])
-  const [content, setContent] = useState("")
+  const [post, setPost] = useState(null);
+  const [profile, setProfile] = useState([]);
+  const [postUser, setPostUser] = useState([]);
+  const [content, setContent] = useState("");
 
   const userId = user?._id;
 
@@ -48,6 +48,23 @@ function PostDetailsPage() {
   useEffect(() => {
     getPost()
   }, [postId])
+
+  // const getPostUser = () => {
+  //   axios
+  //     .get(baseURL + "/api/users/" + post?.user?._id, {
+  //       headers: { Authorization: `Bearer ${storedToken}` },
+  //     })
+  //     .then((res) => {
+  //       setPostUser(res.data)
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
+
+  // useEffect(() => {
+  //   getPostUser()
+  // }, [postId])
+
+  console.log(post?.comment[0].username);
 
   const getUser = () => {
     axios
@@ -89,7 +106,6 @@ function PostDetailsPage() {
     e.preventDefault();
 
     const requestBody = { username: profile.username, profileImage: profile.profileImage, content };
-    console.log(requestBody);
     uploadComment(requestBody)
 
   };
@@ -128,12 +144,12 @@ function PostDetailsPage() {
 
                 {post.comment
                   ?
-                  post.comment.map((e) =>
-
+                  post.comment.map((e) =>                    
                     <MDBCardBody key={e._id}>
                       <hr />
-
-                      <Container className="commentContainer">
+                      {post?.user.username == e?.username
+                        ?
+                        <Container className="authorContainer">
                         <div className="commentUser">
                           <MDBCardImage
                             className="rounded-circle shadow-1-strong me-3"
@@ -153,6 +169,29 @@ function PostDetailsPage() {
                           {e.content}
                         </p>
                       </Container>
+                        : 
+                        <Container className="commentContainer">
+                        <div className="commentUser">
+                          <MDBCardImage
+                            className="rounded-circle shadow-1-strong me-3"
+                            src={e.profileImage}
+                            alt="avatar"
+                            width="40"
+                            height="40"
+                          />
+
+                          <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
+                          <p className="text-muted small mb-0">
+                            {/* Shared publicly - Jan 2020 */}
+                          </p>
+                        </div>
+
+                        <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
+                          {e.content}
+                        </p>
+                      </Container>
+                      }
+                      
                     </MDBCardBody>
                   )
                   : <></>
@@ -160,7 +199,7 @@ function PostDetailsPage() {
 
                 <form onSubmit={handleSubmit}>
                   <MDBCardFooter
-                    className="py-3 border-0"
+                    className="py-3 border-0 postFooter"
                     style={{ backgroundColor: "#f8f9fa" }}
 
                   >
