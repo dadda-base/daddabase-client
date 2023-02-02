@@ -17,7 +17,7 @@ import {
   MDBTextArea,
 } from "mdb-react-ui-kit";
 import { LinkContainer } from "react-router-bootstrap";
-import { Container, Nav } from "react-bootstrap";
+import { Button, Container, Nav } from "react-bootstrap";
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -70,10 +70,20 @@ function PostDetailsPage() {
         { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setContent("")
-        getPost()        
+        getPost()
       });
   }
-  
+
+  const deletePost = () => {
+    axios
+      .delete(baseURL + "/api/posts/" + postId,
+        { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then(() => {
+        navigate("/posts");
+      })
+      .catch((err) => console.log(err));
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +91,7 @@ function PostDetailsPage() {
     const requestBody = { username: profile.username, profileImage: profile.profileImage, content };
     console.log(requestBody);
     uploadComment(requestBody)
-    
+
   };
 
 
@@ -114,38 +124,38 @@ function PostDetailsPage() {
                     {post.description}
                   </p>
                 </MDBCardBody>
-                
-                
+
+
                 {post.comment
-                ?
-                post.comment.map((e) => 
-              
-                <MDBCardBody key={e._id}>
-                  <hr />
-                  
-                  <Container className="commentContainer">
-                    <div className="commentUser">
-                    <MDBCardImage
-                      className="rounded-circle shadow-1-strong me-3"
-                      src={e.profileImage}
-                      alt="avatar"
-                      width="40"
-                      height="40"
-                    />
-                    
-                      <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
-                      <p className="text-muted small mb-0">
-                        {/* Shared publicly - Jan 2020 */}
-                      </p>
-                    </div>
-                                   
-                  <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
-                    {e.content}
-                  </p>
-                  </Container>                 
-                </MDBCardBody> 
-                )
-                :<></>                             
+                  ?
+                  post.comment.map((e) =>
+
+                    <MDBCardBody key={e._id}>
+                      <hr />
+
+                      <Container className="commentContainer">
+                        <div className="commentUser">
+                          <MDBCardImage
+                            className="rounded-circle shadow-1-strong me-3"
+                            src={e.profileImage}
+                            alt="avatar"
+                            width="40"
+                            height="40"
+                          />
+
+                          <h6 className="fw-bold text-primary mb-1">{e.username}</h6>
+                          <p className="text-muted small mb-0">
+                            {/* Shared publicly - Jan 2020 */}
+                          </p>
+                        </div>
+
+                        <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
+                          {e.content}
+                        </p>
+                      </Container>
+                    </MDBCardBody>
+                  )
+                  : <></>
                 }
 
                 <form onSubmit={handleSubmit}>
@@ -175,15 +185,24 @@ function PostDetailsPage() {
                         wrapperClass="w-100" />
                     </div>
                     <div className="float-end mt-2 pt-1">
-                      <MDBBtn size="sm" className="me-1" type="submit" >
+
+                      {userId == post.user?._id
+                        ?
+                        <>
+                          <Button size="sm" variant="danger" id="deletePostBtn" onClick={deletePost}>Delete</Button>
+                        </>
+                        : <></>
+                      }
+                      <Button size="sm" className="me-1" type="submit" >
                         Post comment
-                      </MDBBtn>
+                      </Button>
 
                       <MDBBtn outline size="sm">
                         <LinkContainer to="/posts">
                           <Nav.Link>Cancel</Nav.Link>
                         </LinkContainer>
                       </MDBBtn>
+
                     </div>
                   </MDBCardFooter>
                 </form>
