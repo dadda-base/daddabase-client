@@ -1,0 +1,26 @@
+.dadJokePage {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.dadJoke {
+    
+    display: flex;
+    flex-direction: column;
+    margin: 4rem auto;   
+    text-align: center;
+}
+
+.dadJoke button {
+    width: 15vw;
+}
+
+.dadJoke h5 {
+    line-height: 3rem;
+    font-size: 30px;
+    font-family: 'Josefin Slab', serif;
+    background-color: grey;
+    color: white;
+}

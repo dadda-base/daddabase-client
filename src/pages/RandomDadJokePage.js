@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { AuthContext } from "../context/auth.context";
+import "../pages/RandomDadJokePage.css"
 
 function RandomDadJokePage() {
   const baseURL = process.env.REACT_APP_API_URL;
@@ -27,16 +28,15 @@ function RandomDadJokePage() {
   }, []);
 
   return (
-    <Container>
-      <Row>
-        <Col md={9}>
-          <h5>{joke}</h5>
-        </Col>
-        <Col md={3}>          
-            <Button className="mt-5" onClick={getDadJoke}>Want more?</Button>          
-        </Col>
-      </Row>
+    <div className="dadJokePage">
+    <Container className="dadJoke">
+    <Button variant="primary" onClick={getDadJoke}>Want more?</Button>
+     
+      <br />
+      <br />      
+      <h5>{joke}</h5>    
     </Container>
+    </div>
   );
 }
 
