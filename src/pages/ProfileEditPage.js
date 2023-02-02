@@ -6,6 +6,8 @@ import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 function ProfileEditPage() {
   const { user } = useContext(AuthContext);
@@ -66,7 +68,7 @@ function ProfileEditPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { name, username, profileImage, dadLevel, partnerIsPregnant, dueDayOfBaby};
+    const requestBody = { name, username, profileImage, dadLevel, partnerIsPregnant, dueDayOfBaby };
 
     axios
       .put(`${baseURL}/api/users/${user._id}`, requestBody, {
@@ -119,8 +121,9 @@ function ProfileEditPage() {
 
         <Form.Group className="mb-3" controlId="ControlInput1">
           <Form.Label>Dad level:</Form.Label>
-          <label>
+          <label class="radioLabel">
             <input
+              className="radioBtn"
               type="radio"
               name="dadLevel"
               value="First-Timer"
@@ -129,8 +132,9 @@ function ProfileEditPage() {
             First-Timer
           </label>
 
-          <label>
+          <label class="radioLabel">
             <input
+              className="radioBtn"
               type="radio"
               name="dadLevel"
               value="Intermmediate"
@@ -139,8 +143,9 @@ function ProfileEditPage() {
             Intermmediate
           </label>
 
-          <label>
+          <label class="radioLabel">
             <input
+              className="radioBtn"
               type="radio"
               name="dadLevel"
               value="Veteran"
@@ -152,8 +157,9 @@ function ProfileEditPage() {
 
         <Form.Group className="mb-3" controlId="ControlInput1">
           <Form.Label>Is your partner pregnant?</Form.Label>
-          <label>
+          <label class="radioLabel">
             <input
+              className="radioBtn"
               type="radio"
               name="partnerIsPregnant"
               value={true}
@@ -161,8 +167,10 @@ function ProfileEditPage() {
             />
             Yes
           </label>
-          <label>
+
+          <label class="radioLabel">
             <input
+              className="radioBtn"
               type="radio"
               name="partnerIsPregnant"
               value={false}
@@ -191,6 +199,10 @@ function ProfileEditPage() {
             Submit
           </Button>
         }
+
+        <Link to={`/profiles/${user._id}`}>
+          <Button className="ms-3" variant="success">Cancel</Button>
+        </Link>
 
       </Container>
     </Form>

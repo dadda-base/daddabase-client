@@ -7,7 +7,10 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import axios from 'axios'
 import { LinkContainer } from "react-router-bootstrap";
+import dayjs from 'dayjs';
 const baseURL = process.env.REACT_APP_API_URL;
+
+
 
 function ProfilePage(props) {
   const { isLoggedIn, user } = useContext(AuthContext);
@@ -26,12 +29,18 @@ function ProfilePage(props) {
       .catch((error) => console.log(error));
   }
 
-
-
   useEffect(() => {
     getProfile();
   }, [])
 
+  const renderTime = (time) => {
+    return dayjs(time).format('YYYY/MM/DD')
+  }
+  let now = new Date(dayjs());
+  let dueDay = new Date(profile?.dueDayOfBaby);
+  
+  var remainDay = dueDay.getTime() - now.getTime()
+  console.log(Math.round(remainDay / (1000*60*60*24)));
 
 
   return (
@@ -48,10 +57,10 @@ function ProfilePage(props) {
               <Card.Text>Name: <strong>{profile.name}</strong></Card.Text>
               <Card.Text>Email: <strong>{profile.email}</strong></Card.Text>
               {profile.dadLevel &&
-              <Card.Text>Dad level: <strong>{profile.dadLevel}</strong></Card.Text>
+                <Card.Text>Dad level: <strong>{profile.dadLevel}</strong></Card.Text>
               }
               {profile.dueDayOfBaby &&
-              <Card.Text>Due Day of baby: <br /><strong>{profile.dueDayOfBaby}</strong></Card.Text>
+                <Card.Text>Due Day of baby:<br /><strong>{renderTime(profile.dueDayOfBaby)}</strong></Card.Text>
               }
               <LinkContainer to={`/profiles/${profile._id}/edit`}>
                 <Button variant="primary">Edit Profile</Button>

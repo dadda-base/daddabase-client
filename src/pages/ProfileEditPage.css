@@ -9,3 +9,11 @@
 .editProfile h3 {
     text-align: center;
 }
+
+.radioBtn {
+    margin-left: 2rem;    
+}
+
+.radioLabel {
+    color: black;
+}

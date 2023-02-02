@@ -73,7 +73,6 @@ function ResourceDetailsPage() {
                   <Link to={`/resources/edit/${resourceId}`}>
                     <Button className="ms-3" variant="success">Edit resource</Button>
                   </Link>
-
                   <Button className="ms-3" variant="danger" id="deleteButton" onClick={deleteResource}>Delete</Button>
                 </>
                 : <></>
