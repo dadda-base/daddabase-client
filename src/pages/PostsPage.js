@@ -33,12 +33,12 @@ function PostsPage() {
       <Container>
         <Row xs={1} md={2} lg={3} className="g-4 mt-2">
           {posts.map((post) => (
-            <Card style={{ padding: "2vw" }}>
+            <Card style={{ padding: "0 2vw 3vh" }}>
               <Card.Body className="postCard">
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
                 <LinkContainer to={`/posts/${post._id}`}>
-                  <Button variant="primary">Details</Button>
+                  <Button variant="primary" id="postButton">Details</Button>
                 </LinkContainer>
               </Card.Body>
             </Card>

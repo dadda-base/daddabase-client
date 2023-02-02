@@ -21,5 +21,9 @@
 
 .postCard p{
   color: gray;
-  
+}
+
+.postCard #postButton {
+  position: absolute;
+  bottom: 10px;
 }

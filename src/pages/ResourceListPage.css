@@ -13,6 +13,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 0;
 }
 
 .resourceCard h1, p {
@@ -22,4 +23,9 @@
 .resourceCard p{
   color: gray;
   
+}
+
+.resourceCard #resourceButton {
+  position: absolute;
+  bottom: 10px;
 }

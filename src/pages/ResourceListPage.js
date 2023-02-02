@@ -35,11 +35,11 @@ function ResourceListPage() {
       <Container>
         <Row xs={1} md={2} lg={3} className="g-4 mt-2">
           {resources.map((resource) => (
-            <Card style={{ padding: "2vw"}} >
+            <Card style={{ padding: "0 2vw 3vh"}} >
               <Card.Body className="resourceCard">
                 <h1>{resource.title}</h1>
                 <p>{resource.description}</p>
-                <LinkContainer to={`/resources/${resource._id}`}>
+                <LinkContainer id="resourceButton" to={`/resources/${resource._id}`}>
                   <Button variant="primary">Details</Button>
                 </LinkContainer>
               </Card.Body>
