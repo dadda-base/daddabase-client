@@ -84,9 +84,10 @@ function ProfilePage(props) {
           {profile.posts &&
             profile.posts.map((post) => {
               return (
-                <ListGroup.Item as="li" key={post._id}>
-                  <h5>Title: {post.title}</h5>
-                  <h5>Description: {post.description}</h5>
+                <ListGroup.Item className="profileListBar" as="li" key={post._id}>
+                  <Link to={`/posts/${post._id}`} className="profileList">
+                    <h5>Title: {post.title}</h5>
+                  </Link>
                 </ListGroup.Item>
               )
             })
