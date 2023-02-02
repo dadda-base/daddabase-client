@@ -36,12 +36,11 @@ function ProfilePage(props) {
   const renderTime = (time) => {
     return dayjs(time).format('YYYY/MM/DD')
   }
+
   let now = new Date(dayjs());
   let dueDay = new Date(profile?.dueDayOfBaby);
   
-  var remainDay = dueDay.getTime() - now.getTime()
-  console.log(Math.round(remainDay / (1000*60*60*24)));
-
+  let remainDay = Math.round((dueDay.getTime() - now.getTime()) / (1000*60*60*24))
 
   return (
     <div className="ProfilePage">
@@ -59,8 +58,11 @@ function ProfilePage(props) {
               {profile.dadLevel &&
                 <Card.Text>Dad level: <strong>{profile.dadLevel}</strong></Card.Text>
               }
-              {profile.dueDayOfBaby &&
+              {remainDay > 0 
+                ?
                 <Card.Text>Due Day of baby:<br /><strong>{renderTime(profile.dueDayOfBaby)}</strong></Card.Text>
+                :
+                <></>
               }
               <LinkContainer to={`/profiles/${profile._id}/edit`}>
                 <Button variant="primary">Edit Profile</Button>

@@ -1,0 +1,24 @@
+.babyMessage {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+.babyMessage h1, p, span {
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+.babyMessage img {
+    width: 40vw;
+}
+
+.babyMessage h1 {
+    font-size: 3vw;
+}
+
+.babyMessage p {
+    font-size: 2vw;
+}
