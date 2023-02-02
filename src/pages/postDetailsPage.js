@@ -18,6 +18,7 @@ import {
 } from "mdb-react-ui-kit";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button, Container, Nav } from "react-bootstrap";
+const dayjs = require('dayjs');
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -26,7 +27,6 @@ function PostDetailsPage() {
   const { user } = useContext(AuthContext);
   const [post, setPost] = useState(null);
   const [profile, setProfile] = useState([]);
-  const [postUser, setPostUser] = useState([]);
   const [content, setContent] = useState("");
 
   const userId = user?._id;
@@ -49,22 +49,8 @@ function PostDetailsPage() {
     getPost()
   }, [postId])
 
-  // const getPostUser = () => {
-  //   axios
-  //     .get(baseURL + "/api/users/" + post?.user?._id, {
-  //       headers: { Authorization: `Bearer ${storedToken}` },
-  //     })
-  //     .then((res) => {
-  //       setPostUser(res.data)
-  //     })
-  //     .catch((error) => console.log(error));
-  // }
-
-  // useEffect(() => {
-  //   getPostUser()
-  // }, [postId])
-
-  console.log(post?.comment[0].username);
+  const replyTime = dayjs(Date()).format('YYYY/MM/DD');
+  console.log(replyTime);
 
   const getUser = () => {
     axios
@@ -105,7 +91,7 @@ function PostDetailsPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { username: profile.username, profileImage: profile.profileImage, content };
+    const requestBody = { username: profile.username, profileImage: profile.profileImage, content, replyTime };
     uploadComment(requestBody)
 
   };
