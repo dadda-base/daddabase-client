@@ -1,7 +1,7 @@
 import "../pages/PostDetailsPage.css";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Form, Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -29,8 +29,7 @@ function PostDetailsPage() {
 
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState([])
-  const [comment, setComment] = useState("")
-  const userId = user?._id
+  const [content, setContent] = useState("")
 
   const { postId } = useParams();
   const navigate = useNavigate();
@@ -41,11 +40,13 @@ function PostDetailsPage() {
         { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         const post = response.data;
+        setContent(post.content)
         setPost(post);
       })
       .catch((error) => console.log(error));
   };
-  console.log(post?.user._id);
+  console.log(content);
+
   const getUser = () => {
     axios
       .get(baseURL + "/api/users/" + user._id, {
@@ -63,12 +64,27 @@ function PostDetailsPage() {
 
   useEffect(() => {
     getPost()
-  }, [])
+  }, [postId])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const requestBody = { username: post.user.username, profileImage: post.user.profileImage, content };
+
+    axios
+      .post(baseURL + "/api/posts/" + postId, requestBody,
+        { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then((response) => {
+        navigate("/posts/" + postId)
+      });
+  };
+
 
   return (
     <section className="vh-100" style={{ backgroundColor: "#eee" }}>
       {post &&
-        <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+     
+        <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}  >
           <MDBRow className="justify-content-center">
             <MDBCol md="12" lg="10" xl="8">
               <MDBCard>
@@ -91,27 +107,13 @@ function PostDetailsPage() {
                   <h3 className="mt-3 mb-4 pb-2">{post.title}</h3>
                   <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
                     {post.description}
-                  </p>
-
-                  {/* <div className="small d-flex justify-content-start">
-                  <a href="#!" className="d-flex align-items-center me-3">
-                    <MDBIcon far icon="thumbs-up me-2" />
-                    <p className="mb-0">Like</p>
-                  </a>
-                  <a href="#!" className="d-flex align-items-center me-3">
-                    <MDBIcon far icon="comment-dots me-2" />
-                    <p className="mb-0">Comment</p>
-                  </a>
-                  <a href="#!" className="d-flex align-items-center me-3">
-                    <MDBIcon fas icon="share me-2" />
-                    <p className="mb-0">Share</p>
-                  </a>
-                </div> */}
+                  </p>                  
                 </MDBCardBody>
 
                 <MDBCardFooter
                   className="py-3 border-0"
                   style={{ backgroundColor: "#f8f9fa" }}
+
                 >
                   <div className="d-flex flex-start w-100">
                     <MDBCardImage
@@ -121,19 +123,22 @@ function PostDetailsPage() {
                       width="40"
                       height="40"
                     />
-                    <MDBTextArea 
+                    <MDBTextArea
                       type="text"
-                      name="comment"
-                      value={comment}
+                      name="content"
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
                       placeholder="leave your comment"
-                      label='Message' 
-                      id='comment' 
-                      rows={4} 
-                      style={{ backgroundColor: '#fff' }} 
+                      label='Message'
+                      id='content'
+                      rows={4}
+                      style={{ backgroundColor: '#fff' }}
                       wrapperClass="w-100" />
                   </div>
                   <div className="float-end mt-2 pt-1">
-                    <MDBBtn size="sm" className="me-1">Post comment</MDBBtn>
+                    <MDBBtn size="sm" className="me-1" type="submit" >
+                      Post comment
+                    </MDBBtn>
 
                     <MDBBtn outline size="sm">
                       <LinkContainer to="/posts">
@@ -142,10 +147,12 @@ function PostDetailsPage() {
                     </MDBBtn>
                   </div>
                 </MDBCardFooter>
+                
               </MDBCard>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
+       
       }
     </section>
   );
