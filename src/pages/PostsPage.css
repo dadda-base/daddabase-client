@@ -27,3 +27,10 @@
   position: absolute;
   bottom: 10px;
 }
+
+#serachBar {
+  margin: 0 auto;
+  width: 30%;
+  height: 3rem;
+  padding-left: 1rem;
+}
