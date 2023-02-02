@@ -8,6 +8,8 @@ import axios from "axios";
 ///Components/////
 import CategoryCardComponent from "./components/CategoryCardComponent";
 import NavbarComponent from "./components/NavbarComponent";
+import IsPrivate from "./components/IsPrivate";
+import IsAnon from "./components/IsAnon";
 /////pages///////
 import EditResourcePage from "./pages/EditResourcePage";
 import ErrorPage from "./pages/ErrorPage";
@@ -22,8 +24,8 @@ import ProfileEditPage from "./pages/ProfileEditPage";
 import RandomDadJokePage from "./pages/RandomDadJokePage";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import ResourceListPage from "./pages/ResourceListPage";
-import IsPrivate from "./components/IsPrivate";
-import IsAnon from "./components/IsAnon";
+import ToDoListPage from "./pages/ToDoListPage"
+
 import PostDetailsPage from "./pages/postDetailsPage";
 /////////////////////////////////
 
@@ -124,6 +126,7 @@ function App() {
         <Route path="/products" element={<ProductListPage />} />
         <Route path="/categories/:categoryId" element={<CategoryCardComponent />}/>
         <Route path="/random-dad-jokes" element={<RandomDadJokePage />} />
+        <Route path="/to-do-list/:userId" element={<ToDoListPage />} />
 
         {/* all undefined routes */}
         <Route path="*" element={<ErrorPage />} />

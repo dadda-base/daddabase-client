@@ -104,7 +104,7 @@ function PostDetailsPage() {
     <section className="100%" style={{ backgroundColor: "#eee" }}>
       {post &&
 
-        <MDBContainer className="py-5" style={{ maxWidth: "800px" }} >
+        <MDBContainer className="py-5" style={{ maxWidth: "1000px" }} >
           <MDBRow className="justify-content-center">
             <MDBCol md="12" lg="10" xl="8">
               <MDBCard>

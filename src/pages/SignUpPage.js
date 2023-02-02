@@ -9,8 +9,6 @@ import {
   Form,
   Button,
   InputGroup,
-  Spinner,
-  Alert,
 } from "react-bootstrap";
 
 function SignUpPage() {
@@ -19,7 +17,6 @@ function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [validated, setValidated] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleEmail = (e) => setEmail(e.target.value);
