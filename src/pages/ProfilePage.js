@@ -44,10 +44,15 @@ function ProfilePage(props) {
             <Card.Img variant="top" src={profile.profileImage} alt="" />
 
             <Card.Body>
-              <Card.Title>User Name: {profile.username}</Card.Title>
-              <Card.Text>Name: {profile.name}</Card.Text>
-              <Card.Text>Email: {profile.email}</Card.Text>
-
+              <Card.Title>User Name: <strong>{profile.username}</strong></Card.Title>
+              <Card.Text>Name: <strong>{profile.name}</strong></Card.Text>
+              <Card.Text>Email: <strong>{profile.email}</strong></Card.Text>
+              {profile.dadLevel &&
+              <Card.Text>Dad level: <strong>{profile.dadLevel}</strong></Card.Text>
+              }
+              {profile.dueDayOfBaby &&
+              <Card.Text>Due Day of baby: <br /><strong>{profile.dueDayOfBaby}</strong></Card.Text>
+              }
               <LinkContainer to={`/profiles/${profile._id}/edit`}>
                 <Button variant="primary">Edit Profile</Button>
               </LinkContainer> <br />

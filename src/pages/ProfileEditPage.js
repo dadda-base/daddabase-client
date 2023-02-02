@@ -14,6 +14,9 @@ function ProfileEditPage() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [profileImage, setProfileImage] = useState("");
+  const [dadLevel, setDadLevel] = useState("");
+  const [partnerIsPregnant, setPartnerIsPregnant] = useState(false);
+  const [dueDayOfBaby, setDueDayOfBaby] = useState("");
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const storedToken = localStorage.getItem("authToken");
 
@@ -26,6 +29,9 @@ function ProfileEditPage() {
         setName(user.name);
         setUsername(user.username);
         setProfileImage(user.profileImage);
+        setDadLevel(user.dadLevel);
+        setPartnerIsPregnant(user.partnerIsPregnant);
+        setDueDayOfBaby(user.dueDayOfBaby)
       })
       .catch((error) => console.log(error));
   }, [user._id]);
@@ -60,16 +66,20 @@ function ProfileEditPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { name, username, profileImage };
+    const requestBody = { name, username, profileImage, dadLevel, partnerIsPregnant, dueDayOfBaby};
 
     axios
       .put(`${baseURL}/api/users/${user._id}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` }
       })
       .then((response) => {
+        console.log(response);
         setName("");
         setUsername("");
         setProfileImage("");
+        setDadLevel("")
+        setDueDayOfBaby("")
+        setPartnerIsPregnant(false)
         navigate(`/profiles/${user._id}`);
 
       })
@@ -105,6 +115,72 @@ function ProfileEditPage() {
           <Form.Control
             type="file"
             onChange={(e) => handleFileUpload(e)} />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="ControlInput1">
+          <Form.Label>Dad level:</Form.Label>
+          <label>
+            <input
+              type="radio"
+              name="dadLevel"
+              value="First-Timer"
+              onChange={(e) => setDadLevel(e.target.value)}
+            />
+            First-Timer
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="dadLevel"
+              value="Intermmediate"
+              onChange={(e) => setDadLevel(e.target.value)}
+            />
+            Intermmediate
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="dadLevel"
+              value="Veteran"
+              onChange={(e) => setDadLevel(e.target.value)}
+            />
+            Veteran
+          </label>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="ControlInput1">
+          <Form.Label>Is your partner pregnant?</Form.Label>
+          <label>
+            <input
+              type="radio"
+              name="partnerIsPregnant"
+              value={true}
+              onChange={(e) => setPartnerIsPregnant(e.target.value)}
+            />
+            Yes
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="partnerIsPregnant"
+              value={false}
+              onChange={(e) => setPartnerIsPregnant(e.target.value)}
+            />
+            No
+          </label>
+
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="ControlInput1">
+          <Form.Label>Due Day of baby:</Form.Label>
+          <Form.Control
+            type="date"
+            name="dueDayOfBaby"
+            value={dueDayOfBaby}
+            onChange={(e) => setDueDayOfBaby(e.target.value)}
+            placeholder="What's your level?" />
         </Form.Group>
 
         {isUploadingImage
