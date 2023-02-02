@@ -6,6 +6,7 @@
 .commentContainer {
    display: flex;
    flex-direction: column;
+   align-items: flex-end;
    height: 10vh;
 }
 

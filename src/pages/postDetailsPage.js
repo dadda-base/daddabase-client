@@ -29,6 +29,8 @@ function PostDetailsPage() {
   const [profile, setProfile] = useState([])
   const [content, setContent] = useState("")
 
+  const userId = user?._id;
+
   const { postId } = useParams();
   const navigate = useNavigate();
 
@@ -43,11 +45,13 @@ function PostDetailsPage() {
       })
       .catch((error) => console.log(error));
   };
-  console.log(content);
+  useEffect(() => {
+    getPost()
+  }, [postId])
 
   const getUser = () => {
     axios
-      .get(baseURL + "/api/users/" + user._id, {
+      .get(baseURL + "/api/users/" + userId, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {
@@ -60,24 +64,24 @@ function PostDetailsPage() {
     getUser()
   }, [])
 
-  useEffect(() => {
-    getPost()
-  }, [postId])
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const requestBody = { username: post.user.username, profileImage: post.user.profileImage, content };
-
+  const uploadComment = (requestBody) => {
     axios
       .post(baseURL + "/api/posts/" + postId, requestBody,
         { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setContent("")
-        setProfile("")
-
-        navigate("/posts/" + postId)
+        getPost()        
       });
+  }
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const requestBody = { username: profile.username, profileImage: profile.profileImage, content };
+    console.log(requestBody);
+    uploadComment(requestBody)
+    
   };
 
 
@@ -85,7 +89,7 @@ function PostDetailsPage() {
     <section className="100%" style={{ backgroundColor: "#eee" }}>
       {post &&
 
-        <MDBContainer className="py-5" style={{ maxWidth: "800px" }} onSubmit={handleSubmit} >
+        <MDBContainer className="py-5" style={{ maxWidth: "800px" }} >
           <MDBRow className="justify-content-center">
             <MDBCol md="12" lg="10" xl="8">
               <MDBCard>
@@ -115,8 +119,8 @@ function PostDetailsPage() {
                 {post.comment
                 ?
                 post.comment.map((e) => 
-                  
-                <MDBCardBody>
+              
+                <MDBCardBody key={e._id}>
                   <hr />
                   
                   <Container className="commentContainer">
@@ -134,19 +138,14 @@ function PostDetailsPage() {
                         {/* Shared publicly - Jan 2020 */}
                       </p>
                     </div>
-                  
-                  
+                                   
                   <p className="mt-3 mb-4 pb-2" style={{ textAlign: "start" }}>
                     {e.content}
                   </p>
-                  </Container>
-                  
-                </MDBCardBody>
-
-                  )
-                :<></>
-                 
-                
+                  </Container>                 
+                </MDBCardBody> 
+                )
+                :<></>                             
                 }
 
                 <form onSubmit={handleSubmit}>
@@ -158,7 +157,7 @@ function PostDetailsPage() {
                     <div className="d-flex flex-start w-100">
                       <MDBCardImage
                         className="rounded-circle shadow-1-strong me-3"
-                        src={profile.profileImage}
+                        src={profile?.profileImage}
                         alt="avatar"
                         width="40"
                         height="40"
