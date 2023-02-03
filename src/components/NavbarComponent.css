@@ -1,0 +1,23 @@
+.dropdown {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dropdown button {
+    width: 10vw;
+    margin: 2px;
+}
+
+.loginLink {
+    margin-right: 20px;
+}
+
+.signupLink {
+    margin-right: 15px;
+}
+
+.Navlink {
+    color:black
+}
