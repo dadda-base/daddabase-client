@@ -193,9 +193,6 @@ function HomePage() {
       text = "1-3 weeks: Your baby is the size of a poppy seed";
   }
   console.log("week" + pregnancyWeek);
-  console.log(url);
-  console.log(text);
-
 
   const getAllCategories = () => {
 
@@ -269,16 +266,31 @@ function HomePage() {
             </Card.Body>
           </Card>
 
+          {user?._id
+          ?
           <Card style={{ width: '15rem' }}>
             <Card.Body className="yellowCard">
-              <Link to={`/signup`}>
+              <Link to={`/profiles/${user._id}`}>
                 <Card.Title>My Profile</Card.Title>
                 <Card.Text>
-                  Lots of functions on user profile. Not a member yet? sign up now!
+                  Lots of functions on user profile. Let's explore!
                 </Card.Text>
               </Link>
             </Card.Body>
           </Card>
+          :
+          <Card style={{ width: '15rem' }}>
+            <Card.Body className="yellowCard">
+              <Link to={`/signup`}>
+                <Card.Title>Join us</Card.Title>
+                <Card.Text>
+                  Lots of functions of users. Not a member yet? sign up now!
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+          }
+          
         </Container>
       }
 
