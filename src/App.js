@@ -18,14 +18,11 @@ import HomePage from "./pages/HomePage";
 import LogInPage from "./pages/LogInPage";
 import SignUpPage from "./pages/SignUpPage";
 import PostsPage from "./pages/PostsPage";
-import ProductListPage from "./pages/ProductListPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileEditPage from "./pages/ProfileEditPage";
 import RandomDadJokePage from "./pages/RandomDadJokePage";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import ResourceListPage from "./pages/ResourceListPage";
-import ToDoListPage from "./pages/ToDoListPage"
-
 import PostDetailsPage from "./pages/postDetailsPage";
 /////////////////////////////////
 
@@ -123,15 +120,11 @@ function App() {
               <PostDetailsPage />
             </IsPrivate>}
         />
-        <Route path="/products" element={<ProductListPage />} />
+        
         <Route path="/categories/:categoryId" element={<CategoryCardComponent />}/>
         <Route path="/random-dad-jokes" element={<RandomDadJokePage />} />
-        <Route path="/to-do-list/:userId" element={<ToDoListPage />} />
-
         {/* all undefined routes */}
-        <Route path="*" element={<ErrorPage />} />
-
-        
+        <Route path="*" element={<ErrorPage />} />        
       </Routes>
       <Footer />
     </div>

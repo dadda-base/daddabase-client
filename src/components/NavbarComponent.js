@@ -62,14 +62,7 @@ const NavbarComponent = (props) => {
                 Resources
               </Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/products">
-              <Nav.Link className="Navlink">
-                Products
-              </Nav.Link>
-            </LinkContainer>
-
             
-
           </Nav>
         </Navbar.Collapse>
       </Container>

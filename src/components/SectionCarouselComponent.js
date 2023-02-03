@@ -80,31 +80,6 @@ const SectionCarouselComponent = () => {
           <p>see what others have to say!</p>
         </Carousel.Caption>
       </Carousel.Item>
-
-      <Carousel.Item>
-        <img
-          objectfit="cover"
-          crossOrigin="anonymous"
-          className="d-block w-100"
-          style={{ height: "30vh" }}
-          src={"/images/carousel-5.jpg"}
-          alt="Third slide"
-        />
-
-        <Carousel.Caption
-          style={{
-            backgroundColor: "gray",
-            opacity: 0.8,
-            textAlign: "center",
-            margin: "0 30vw",
-          }}
-        >
-          <LinkContainer style={cursorPointer} to="/products">
-            <h1>Treat Yourself</h1>
-          </LinkContainer>
-          <p>get it yourself</p>
-        </Carousel.Caption>
-      </Carousel.Item>
     </Carousel>
   );
 };
