@@ -26,7 +26,7 @@ import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import ResourceListPage from "./pages/ResourceListPage";
 import ToDoListPage from "./pages/ToDoListPage"
 
-import PostDetailsPage from "./pages/PostDetailsPage";
+import PostDetailsPage from "./pages/postDetailsPage";
 /////////////////////////////////
 
 function App() {
