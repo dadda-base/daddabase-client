@@ -36,6 +36,10 @@ create a .env file containing the following environment variable REACT_APP_API_U
 * run: $npm run dev
 ```
 
+## Demo
+
+A demo of the REST API can be found here: https://daddabase.netlify.app/
+
 ## Authors
 
 David Mullally
